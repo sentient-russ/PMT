@@ -50,4 +50,36 @@ public class DbAccess {
         ArrayList<ProjectModel> updatedList = GetProjects();
         return updatedList;
     }
+    public ArrayList<ProjectModel> UpdateProject(ProjectModel projectIn){
+        try{
+            String query = ("UPDATE pmt.Projects SET companyName=?, projOwner=?, projManager=?,projDescription=?,projEstimatedHours=?,projStatus=? WHERE projId=?");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(7, projectIn.projId);
+            stmt.setString(1, projectIn.companyName);
+            stmt.setString(2, projectIn.projOwner);
+            stmt.setString(3, projectIn.projManager);
+            stmt.setString(4, projectIn.projDescription);
+            stmt.setString(5, projectIn.projEstimatedHours);
+            stmt.setString(6, projectIn.projStatus);
+            stmt.executeUpdate();
+        } catch (SQLException e){
+        System.out.println(e);
+        }
+        ArrayList<ProjectModel> updatedList = GetProjects();
+        return updatedList;
+    }
+    public ArrayList<ProjectModel> DeleteProject(ProjectModel projectIn){
+        try{
+            String query = ("DELETE pmt.Projects WHERE projId=?");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, projectIn.projId);
+            stmt.executeUpdate();
+        } catch (SQLException e){
+            System.out.println(e);
+        }
+        ArrayList<ProjectModel> updatedList = GetProjects();
+        return updatedList;
+    }
 }
