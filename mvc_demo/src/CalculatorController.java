@@ -20,7 +20,7 @@ public class CalculatorController {
         this.theView.addCalculateListener(new CalculateListener());
     }
 
-    class CalculateListener implements ActionListener{
+    class CalculateListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
 
@@ -30,7 +30,7 @@ public class CalculatorController {
             // a try block in case numbers weren't
             // properly entered
 
-            try{
+            try {
 
                 firstNumber = theView.getFirstNumber();
                 secondNumber = theView.getSecondNumber();
@@ -39,9 +39,7 @@ public class CalculatorController {
 
                 theView.setCalcSolution(theModel.getCalculationValue());
 
-            }
-
-            catch(NumberFormatException ex){
+            } catch (NumberFormatException ex) {
 
                 System.out.println(ex);
 
