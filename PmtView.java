@@ -2,7 +2,8 @@ import javax.swing.*;
 
 public class PmtView extends JFrame {
 
-    public PmtView(){
+    public PmtView(String title){
+        super(title);
         JPanel panelView = new JPanel();
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

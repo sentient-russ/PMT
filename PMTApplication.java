@@ -9,7 +9,7 @@ public class PMTApplication {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new PmtView().setVisible(true);
+                new PmtView("PMT Window").setVisible(true);
             }
         });
 
