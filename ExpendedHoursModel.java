@@ -1,7 +1,7 @@
 public class ExpendedHoursModel {
-    int projNumber;
-    String expDescription;
-    String expNumHours;
+    int projNumber = 0;
+    String expDescription = "";
+    String expNumHours = "";
 
     public ExpendedHoursModel(int projNumberIn, String expDescriptionIn, String expNumHoursIn){
         this.projNumber = projNumberIn;

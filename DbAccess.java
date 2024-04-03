@@ -34,7 +34,14 @@ public class DbAccess {
     }
     public ArrayList<ProjectModel> InsertProject(ProjectModel newProjectIn){
         String companyName = newProjectIn.companyName, projOwner = newProjectIn.projOwner, projManager = newProjectIn.projManager, projDescription = newProjectIn.projDescription, projEstimatedHours  = newProjectIn.projEstimatedHours, projStatus = newProjectIn.projStatus;
-        ;
+        if(newProjectIn.companyName == null || newProjectIn.projOwner == null || newProjectIn.projManager == null || newProjectIn.projDescription == null || newProjectIn.projEstimatedHours == null || newProjectIn.projStatus == null){
+            ArrayList<ProjectModel> updatedList = GetProjects();
+            updatedList.get(0).projId = 0;
+            updatedList.get(0).projDescription = "Passing projects with null values is not permissible.  Passing empty strings or zeros are permissable.";
+
+            return updatedList;
+        }
+
         try{
             Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
             Statement statement = connection.createStatement();

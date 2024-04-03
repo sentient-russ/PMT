@@ -1,8 +1,8 @@
 public class RiskModel {
-    int riskId;
-    int projNumber;
-    String riskDescription;
-    String riskStatus;
+    int riskId = 0;
+    int projNumber = 0;
+    String riskDescription = "";
+    String riskStatus = "";
     public RiskModel(int riskIdin, int projNumberIn, String riskDescriptionIn, String riskStatusIn){
         this.riskId = riskIdin;
         this.projNumber = projNumberIn;

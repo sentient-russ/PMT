@@ -1,13 +1,13 @@
 import java.io.StringBufferInputStream;
 
 public class ProjectModel {
-    int projId;
-    String companyName;
-    String projOwner;
-    String projManager;
-    String projDescription;
-    String projEstimatedHours;
-    String projStatus;
+    int projId = 0;
+    String companyName = "";
+    String projOwner = "";
+    String projManager = "";
+    String projDescription = "";
+    String projEstimatedHours = "";
+    String projStatus = "";
     public ProjectModel(){
 
     }
