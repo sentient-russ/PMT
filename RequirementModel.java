@@ -4,6 +4,9 @@ public class RequirementModel {
     String reqType = "";
     String reqDescription = "";
     String reqStatus = "";
+    public RequirementModel(){
+
+    }
     public RequirementModel(int reqIdIn, int projNumberIn, String reqTypeIn, String reqDescriptionIn, String reqStatusIn ){
         this.reqId = reqIdIn;
         this.projNumber = projNumberIn;
