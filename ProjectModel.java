@@ -1,5 +1,3 @@
-import java.io.StringBufferInputStream;
-
 public class ProjectModel {
     int projId = 0;
     String companyName = "";
