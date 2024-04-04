@@ -1,7 +1,6 @@
 
 import javax.swing.*;
 import java.awt.*;
-
 public class CustomScrollBar extends JScrollBar {
     public CustomScrollBar() {
         setUI(new ModernScrollBarUI());

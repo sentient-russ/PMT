@@ -7,12 +7,16 @@ public class PMTApplication extends javax.swing.JFrame {
     static DbAccess dataAccess = new DbAccess();
     private JScrollPane jScrollPanel;
     public PmtView pmtView;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     public PMTApplication() {
-        initComponents();
-        getContentPane().setBackground(new Color(54, 69, 79));
-        pmtView.scrollBarUpdateProjectViewTable(jScrollPanel);
+        initComponents(); //This calls the method bellow that initializes various window controls like buttons and tables.
+        getContentPane().setBackground(new Color(54, 69, 79)); //Sets the background color for the projects view.
+        pmtView.scrollBarUpdateProjectViewTable(jScrollPanel); //updates the scrollbar in the initial projects view.
         DefaultTableModel model = (DefaultTableModel) pmtView.getModel();
-        ArrayList<ProjectModel> resultsList = dataAccess.GetProjects();
+        ArrayList<ProjectModel> resultsList = dataAccess.GetProjects(); //creates an array list of project models then uses the dataAccess instance to
+
         for (int i = 0; i <= resultsList.size() -1; i++) {
             model.addRow(new Object[]{resultsList.get(i).projId, resultsList.get(i).companyName, resultsList.get(i).projDescription, resultsList.get(i).projStatus, resultsList.get(i).projEstimatedHours, "Fix me"});
         }
@@ -34,6 +38,9 @@ public class PMTApplication extends javax.swing.JFrame {
 
         jScrollPanel = new javax.swing.JScrollPane();
         pmtView = new PmtView();
+        jButton1 = new javax.swing.JButton();//***
+        jButton2 = new javax.swing.JButton();//***
+        jButton3 = new javax.swing.JButton();//***
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1000, 750));
@@ -72,27 +79,77 @@ public class PMTApplication extends javax.swing.JFrame {
             pmtView.getColumnModel().getColumn(5).setMinWidth(50);
             pmtView.getColumnModel().getColumn(5).setPreferredWidth(75);
         }
+        jButton1.setText("Delete");//***
+        jButton1.setToolTipText("");//***
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));//***
+        jButton1.addActionListener(new java.awt.event.ActionListener() {//***
+            public void actionPerformed(java.awt.event.ActionEvent evt) {//***
+                jButton1ActionPerformed(evt);//***
+            }//***
+        });//***
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
+        jButton2.setText("Add New");//***
+        jButton2.setToolTipText("");//***
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));//***
+        jButton2.addActionListener(new java.awt.event.ActionListener() {//***
+            public void actionPerformed(java.awt.event.ActionEvent evt) {//***
+                jButton2ActionPerformed(evt);//***
+            }//***
+        });//***
+
+        jButton3.setText("Update");//***
+        jButton3.setToolTipText("");//***
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));//***
+        jButton3.addActionListener(new java.awt.event.ActionListener() {//***
+            public void actionPerformed(java.awt.event.ActionEvent evt) {//***
+                jButton3ActionPerformed(evt);//***
+            }//***
+        });//***
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());//***
+        getContentPane().setLayout(layout);//***
+
+        layout.setHorizontalGroup(//***
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(22, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()//***
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)//***
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)//***
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)//***
+                                .addGap(37, 37, 37))//***
+                        .addGroup(layout.createSequentialGroup()//***
+                                .addGap(24, 24, 24)//***
+                                .addComponent(jScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)//***
+                                .addContainerGap(22, Short.MAX_VALUE))//***
         );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(256, 256, 256)
+        layout.setVerticalGroup(//***
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)//***
+                        .addGroup(layout.createSequentialGroup()//***
+                                .addGap(256, 256, 256)//***
                                 .addComponent(jScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(67, Short.MAX_VALUE))
-        );
+                                .addGap(10, 10, 10)//***
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)//***
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)//***
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)//***
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))//***
+                                .addContainerGap(21, Short.MAX_VALUE))//***
+        );//***
 
         pack();
         setLocationRelativeTo(null);
     }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//***
+        System.out.println("Pressed the CLOSE button.");//***
+    }//***
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//***
+        // TODO add your handling code here://***
+    }//***
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//***
+        // TODO add your handling code here://***
+    }//***
     //Test method to be removed for in final production release
     public static void RussTestCases () {
 
