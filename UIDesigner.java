@@ -15,7 +15,7 @@ public UIDesigner() {
         }
     });
 }
-
+    
     public static void main(String[] args) {
         UIDesigner UIDesignerObject = new UIDesigner();
         UIDesignerObject.setContentPane(UIDesignerObject.homePage);
