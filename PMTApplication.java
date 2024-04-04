@@ -10,14 +10,13 @@ public class PMTApplication extends javax.swing.JFrame {
     public PMTApplication() {
         initComponents();
         getContentPane().setBackground(new Color(54, 69, 79));
-        pmtView.fixTable(jScrollPanel);
+        pmtView.scrollBarUpdateProjectViewTable(jScrollPanel);
         DefaultTableModel model = (DefaultTableModel) pmtView.getModel();
         ArrayList<ProjectModel> resultsList = dataAccess.GetProjects();
         for (int i = 0; i <= resultsList.size() -1; i++) {
             model.addRow(new Object[]{resultsList.get(i).projId, resultsList.get(i).companyName, resultsList.get(i).projDescription, resultsList.get(i).projStatus, resultsList.get(i).projEstimatedHours, "Fix me"});
         }
     }
-
     public static void main(String[] args) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -28,7 +27,7 @@ public class PMTApplication extends javax.swing.JFrame {
         //Runs example-test cases. Remove for final release.
         //RussTestCases();
     }
-    //This method is called from within the constructor to initialize the form.
+    //This method is called from within the PMTApplication constructor above to initialize the form table.
     private void initComponents() {
 
         jScrollPanel = new javax.swing.JScrollPane();

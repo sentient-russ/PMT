@@ -1,15 +1,12 @@
 //import ProjectModel;
 //import RequirementModel;
-
 import java.sql.*;
 import java.util.ArrayList;
-
 public class DbAccess {
     String user = "classremote";
     String pass = "FiddleDeeStix1928";
     public DbAccess(){
     }
-
     /*******************
      Projects Block
      *******************/
@@ -44,7 +41,6 @@ public class DbAccess {
             updatedList.get(0).projDescription = "Passing projects with null values is not permissible.  Passing empty strings or zeros are permissible.";
             return updatedList;
         }
-
         try{
             Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
             Statement statement = connection.createStatement();
@@ -127,7 +123,7 @@ public class DbAccess {
     public ArrayList<RequirementModel> InsertRequirement(RequirementModel reqIn){
         int projNumber = reqIn.projNumber;
         String reqType = reqIn.reqType, reqDescription = reqIn.reqDescription, reqStatus = reqIn.reqStatus;
-        if(!(reqIn.reqId >= 0) || !(reqIn.projNumber >= 0) || reqIn.reqType == null || reqIn.reqDescription == null || reqIn.reqStatus == null){
+        if(!(reqIn.projNumber >= 0) || reqType == null || reqDescription == null || reqStatus == null){
             ArrayList<RequirementModel> updatedReqList = new ArrayList<>();
             updatedReqList.get(0).reqId = 0;
             updatedReqList.get(0).reqDescription = "Passing requirements with null values is not permissible.  Passing empty strings or zeros are permissible.";
@@ -160,7 +156,6 @@ public class DbAccess {
             stmt.setString(1, reqIn.reqType);
             stmt.setString(2, reqIn.reqDescription);
             stmt.setString(3, reqIn.reqStatus);
-
             stmt.executeUpdate();
         } catch (SQLException e){
             System.out.println(e);
@@ -218,15 +213,13 @@ public class DbAccess {
     }
     /*
      *Creates a new team member record in the Db
-     *@param memberId the project id for the requirements list that will be returned
-     *@return updatedReqList list of updated requirements for a specific project id
+     *@param teamMemberIn completed team member model to insert into the Db
+     *@return teamMemberList update list of team members for a specific project id
      */
     public ArrayList<TeamMemberModel> InsertTeamMember(TeamMemberModel teamMemberIn){
-        int memberId = teamMemberIn.memberId;
         int  projNumber= teamMemberIn.projNumber;
-
         String memberFirstName = teamMemberIn.memberFirstName, memberLastName = teamMemberIn.memberLastName, memberPrimaryRole = teamMemberIn.memberPrimaryRole;
-        if(!(memberId >= 0) || !(projNumber >= 0) || memberFirstName == null || memberLastName == null || memberPrimaryRole == null){
+        if(!(projNumber >= 0) || memberFirstName == null || memberLastName == null || memberPrimaryRole == null){
             ArrayList<TeamMemberModel> teamMemberList = new ArrayList<>();
             teamMemberList.get(0).memberId = 0;
             teamMemberList.get(0).memberFirstName = "No Nulls";
@@ -260,7 +253,6 @@ public class DbAccess {
             stmt.setString(1, teamMemberIn.memberFirstName);
             stmt.setString(2, teamMemberIn.memberLastName);
             stmt.setString(3, teamMemberIn.memberPrimaryRole);
-
             stmt.executeUpdate();
         } catch (SQLException e){
             System.out.println(e);
@@ -287,16 +279,175 @@ public class DbAccess {
         ArrayList<TeamMemberModel> updatedTeamMemberList = GetTeamMembers(projIdIn);
         return updatedTeamMemberList;
     }
-
     /*******************
      Hours Block
      *******************/
-
-
-
+    /*
+     *@param projIdIn the project id for the expended hours list that will be returned
+     *@return resultsList list of expended hours records for a specified project id
+     */
+    public ArrayList<ExpendedHoursModel> GetExpendedHours(int projIdIn){
+        ArrayList<ExpendedHoursModel> expendedHoursList = new ArrayList<>();
+        try{
+            String query = "SELECT * FROM pmt.ProjExpHours WHERE projNumber=?";
+            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, projIdIn);
+            ResultSet resultSet = stmt.executeQuery();
+            while(resultSet.next()){
+                ExpendedHoursModel foundExpHoursRecord = new ExpendedHoursModel();
+                foundExpHoursRecord.expId = resultSet.getInt("expId");
+                foundExpHoursRecord.expHoursType = resultSet.getString("expHoursType");
+                foundExpHoursRecord.projNumber = resultSet.getInt("projNumber");
+                foundExpHoursRecord.expDescription = resultSet.getString("expDescription");
+                foundExpHoursRecord.expNumHours = resultSet.getString("expNumHours");
+                expendedHoursList.add(foundExpHoursRecord);
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        return expendedHoursList;
+    }
+    /*
+     *Creates a new expended hours record in the Db
+     *@param expendedHoursIn the completed expended hours model to be inserted into the Db
+     *@return expendedHoursList list of updated expended hours records for a specific project id
+     */
+    public ArrayList<ExpendedHoursModel> InsertExpendedHours(ExpendedHoursModel expendedHoursIn){
+        int  projNumber= expendedHoursIn.projNumber;
+        String memberFirstName = expendedHoursIn.memberFirstName, memberLastName = expendedHoursIn.memberLastName, expHoursType = expendedHoursIn.expHoursType, expDescription = expendedHoursIn.expDescription, expNumHours = expendedHoursIn.expNumHours;
+        if(!(projNumber >= 0) || memberFirstName == null || memberLastName == null || expHoursType == null || expDescription == null || expNumHours == null ){
+            ArrayList<ExpendedHoursModel> expendedHoursList = new ArrayList<>();
+            expendedHoursList.get(0).expId = 0;
+            expendedHoursList.get(0).expDescription = "No Nulls Allowed!";
+            return expendedHoursList;
+        }
+        try{
+            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
+            Statement statement = connection.createStatement();
+            String query = "INSERT INTO pmt.ProjExpHours" +
+                    "(projNumber, memberFirstName, memberLastName, expHoursType, expDescription, expNumHours)" +
+                    " VALUES('" + memberFirstName + "','" + memberLastName + "','" + expHoursType +"','"+ expDescription +"','"+ expNumHours + "')";
+            statement.executeUpdate(query);
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        ArrayList<ExpendedHoursModel> expendedHoursList = GetExpendedHours(expendedHoursIn.projNumber);
+        return expendedHoursList;
+    }
+    /*
+     *Deletes an expended hours record
+     *@param expIdIn the expended hours id number to be deleted
+     *@param projIdIn the id for the current project. Will be used to get the updated expended hours list
+     *@return updatedExpendedHoursList list of updated hours list for the project
+     */
+    public ArrayList<ExpendedHoursModel> DeleteExpendedHours(int expIdIn, int projIdIn){
+        try{
+            String query = ("DELETE FROM pmt.ProjExpHours  WHERE expIdIn=?");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, expIdIn);
+            stmt.executeUpdate();
+        } catch (SQLException e){
+            System.out.println(e);
+        }
+        ArrayList<ExpendedHoursModel> updatedExpendedHoursList = GetExpendedHours(projIdIn);
+        return updatedExpendedHoursList;
+    }
     /*******************
      Risks Block
      *******************/
-
+    /*
+     *@param projIdIn the project id for the project risks list that will be returned
+     *@return foundRisksList list of project risks for a specified project id
+     */
+    public ArrayList<RiskModel> GetRisks(int projIdIn){
+        ArrayList<RiskModel> foundRisksList = new ArrayList<>();
+        try{
+            String query = "SELECT * FROM pmt.ProjRisks WHERE projNumber=?";
+            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, projIdIn);
+            ResultSet resultSet = stmt.executeQuery();
+            while(resultSet.next()){
+                RiskModel foundRisksRecord = new RiskModel();
+                foundRisksRecord.riskId = resultSet.getInt("riskId");
+                foundRisksRecord.projNumber = resultSet.getInt("projNumber");
+                foundRisksRecord.riskDescription = resultSet.getString("riskDescription");
+                foundRisksRecord.riskStatus = resultSet.getString("riskStatus");
+                foundRisksList.add(foundRisksRecord);
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        return foundRisksList;
+    }
+    /*
+     *Creates a new risk record in the Db
+     *@param newRiskIn the completed risk model to be inserted into the Db
+     *@return updatedRiskList list of updated risk records for a specific project id
+     */
+    public ArrayList<RiskModel> InsertExpendedHours(RiskModel newRiskIn){
+        int  projNumber= newRiskIn.projNumber;
+        String riskDescription = newRiskIn.riskDescription, riskStatus = newRiskIn.riskStatus;
+        if(!(projNumber >= 0) || riskDescription == null || riskStatus == null){
+            ArrayList<RiskModel> updatedRiskList = new ArrayList<>();
+            updatedRiskList.get(0).riskId = 0;
+            updatedRiskList.get(0).riskDescription = "No Nulls Allowed!";
+            return updatedRiskList;
+        }
+        try{
+            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
+            Statement statement = connection.createStatement();
+            String query = "INSERT INTO pmt.ProjRisks" +
+                    "(projNumber, riskDescription, riskStatus)" +
+                    " VALUES('" + projNumber + "','" + riskDescription + "','" + riskStatus + "')";
+            statement.executeUpdate(query);
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        ArrayList<RiskModel> updatedRiskList = GetRisks(newRiskIn.projNumber);
+        return updatedRiskList;
+    }
+    /*
+     *Updates a risk record
+     *@param riskIn a RiskModel that is complete with no fields null or as empty string
+     *@return updatedRisksList list of updated risks to display for the project
+     */
+    public ArrayList<RiskModel> UpdateTeamMember(RiskModel riskIn){
+        try{
+            String query = ("UPDATE pmt.ProjRisks SET projId=?, riskDescription=?, riskStatus=? WHERE riskId=?");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(4, riskIn.riskId);
+            stmt.setInt(1, riskIn.projNumber);
+            stmt.setString(2, riskIn.riskDescription);
+            stmt.setString(3, riskIn.riskStatus);
+            stmt.executeUpdate();
+        } catch (SQLException e){
+            System.out.println(e);
+        }
+        ArrayList<RiskModel> updatedRisksList = GetRisks(riskIn.projNumber);
+        return updatedRisksList;
+    }
+    /*
+     *Deletes a risk record
+     *@param riskIdIn the risk id number to be deleted
+     *@param projIdIn the id for the current project. Will be used to get the updated the risks list
+     *@return updatedRisksList list of updated risks to display for the project
+     */
+    public ArrayList<RiskModel> DeleteRisk(int riskIdIn, int projIdIn){
+        try{
+            String query = ("DELETE FROM pmt.ProjRisks  WHERE riskId=?");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, riskIdIn);
+            stmt.executeUpdate();
+        } catch (SQLException e){
+            System.out.println(e);
+        }
+        ArrayList<RiskModel> updatedRisksList = GetRisks(projIdIn);
+        return updatedRisksList;
+    }
 
 }

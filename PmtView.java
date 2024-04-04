@@ -4,20 +4,20 @@ import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 public class PmtView extends JTable {
     public PmtView(){
-        getTableHeader().setDefaultRenderer(new TableDarkHeader());
+        getTableHeader().setDefaultRenderer(new ProjectsViewTable());
         getTableHeader().setPreferredSize(new Dimension(0,25));
-        setDefaultRenderer(Object.class, new TableDarkCell());
+        setDefaultRenderer(Object.class, new ProjectsViewCells());
         setRowHeight(20);
     }
-    public void fixTable(JScrollPane scroll){
-        scroll.setVerticalScrollBar(new ScrollBarCustom());
+    public void scrollBarUpdateProjectViewTable(JScrollPane scroll){
+        scroll.setVerticalScrollBar(new CustomScrollBar());
         JPanel panel = new JPanel();
         panel.setBackground(new Color(54,69,79));
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, panel);
         scroll.getViewport().setBackground(new Color(222,225,226));
         scroll.setBorder(BorderFactory.createLineBorder(new Color(54,69,79)));
     }
-    private class TableDarkHeader extends DefaultTableCellRenderer{
+    private class ProjectsViewTable extends DefaultTableCellRenderer{
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -26,7 +26,7 @@ public class PmtView extends JTable {
             return comp;
         }
     }
-    private class TableDarkCell extends DefaultTableCellRenderer{
+    private class ProjectsViewCells extends DefaultTableCellRenderer{
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
