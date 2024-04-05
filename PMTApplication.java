@@ -11,11 +11,11 @@ public class PMTApplication extends javax.swing.JFrame {
     private javax.swing.JButton jBtnUpdate_PmtView;//***
     private javax.swing.JButton jBtnDelete_PmtView;//***
     public PMTApplication() {
-        initComponents(); //This calls the method bellow that initializes various window controls like buttons and tables.
-        getContentPane().setBackground(new Color(54, 69, 79)); //Sets the background color for the projects view.
-        pmtView.scrollBarUpdateProjectViewTable(jScrollPanel); //updates the scrollbar in the initial projects view.
+        initComponents();
+        getContentPane().setBackground(new Color(54, 69, 79));
+        pmtView.scrollBarUpdateProjectViewTable(jScrollPanel);
         DefaultTableModel model = (DefaultTableModel) pmtView.getModel();
-        ArrayList<ProjectModel> resultsList = dataAccess.GetProjects(); //creates an array list of project models then uses the dataAccess instance to
+        ArrayList<ProjectModel> resultsList = dataAccess.GetProjects();
 
         for (int i = 0; i <= resultsList.size() -1; i++) {
             model.addRow(new Object[]{resultsList.get(i).projId, resultsList.get(i).companyName, resultsList.get(i).projDescription, resultsList.get(i).projStatus, resultsList.get(i).projEstimatedHours, "Fix me"});
