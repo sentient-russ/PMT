@@ -1,55 +1,57 @@
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 
-public class PmtView extends JTable {
-    public PmtView() {
-        getTableHeader().setDefaultRenderer(new ProjectsViewTable());
-        getTableHeader().setPreferredSize(new Dimension(0, 25));
-        setDefaultRenderer(Object.class, new ProjectsViewCells());
-        setRowHeight(20);
+public class PmtView extends JFrame {
+    JButton add = new JButton("Add");
+
+    JButton update = new JButton("Update");
+    JButton delete = new JButton("Delete");
+    JButton exit = new JButton("X");
+    JLabel logo = new JLabel("P.M.T Logo");
+    JLabel tag = new JLabel("Projects");
+
+    public PmtView(String title){
+        super(title);
+//        JPanel innerPanel = new JPanel();
+//        innerPanel.setSize(800, 400);
+
+        this.setLayout(null);
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setBounds(50,150,900,750);
+        mainPanel.setLayout(null);
+        mainPanel.setBackground(Color.white);
+
+        JPanel panelView = new JPanel();
+        panelView.setLayout(null);
+        panelView.setSize(1000, 1000);
+        panelView.setBackground(Color.decode("#EDEDED"));
+
+        logo.setLayout(null);
+        logo.setBounds(450, 10, 100, 100);
+
+        tag.setLayout(null);
+        tag.setBounds(455, 50, 100, 100);
+
+        mainPanel.add(add);
+        mainPanel.add(update);
+        mainPanel.add(delete);
+
+        panelView.add(exit);
+        panelView.add(logo);
+        panelView.add(tag);
+
+
+
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(600, 200);
+        this.setSize(1000, 1000);
+
+        this.add(panelView);
+        panelView.add(mainPanel);
+//        panelView.add(innerPanel);
+
     }
 
-    public void scrollBarUpdateProjectViewTable(JScrollPane scroll) {
-        scroll.setVerticalScrollBar(new CustomScrollBar());
-        JPanel panel = new JPanel();
-        panel.setBackground(new Color(54, 69, 79));
-        scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, panel);
-        scroll.getViewport().setBackground(new Color(222, 225, 226));
-        scroll.setBorder(BorderFactory.createLineBorder(new Color(54, 69, 79)));
-    }
-
-    private class ProjectsViewTable extends DefaultTableCellRenderer {
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            comp.setBackground(new Color(54, 69, 79));
-            comp.setForeground(new Color(231, 235, 238));
-            return comp;
-        }
-    }
-
-    private class ProjectsViewCells extends DefaultTableCellRenderer {
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            if (isCellSelected(row, column)) {
-                if (row % 2 == 0) {
-                    comp.setBackground(new Color(158, 165, 170));
-                } else {
-                    comp.setBackground(new Color(158, 165, 170));
-                }
-            } else {
-                if (row % 2 == 0) {
-                    comp.setBackground(new Color(238, 240, 240));
-                } else {
-                    comp.setBackground(new Color(222, 225, 226));
-                }
-            }
-            setBorder(new EmptyBorder(0, 5, 0, 5));
-            return comp;
-        }
-    }
 
 }
