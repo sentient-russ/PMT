@@ -98,8 +98,10 @@ public class PmtView extends JFrame{
         });
         panel.add(exit);
 
-        JLabel logo = new JLabel("P.M.T Logo");
-        logo.setBounds(550,40,100, 25);
+        ImageIcon icon = new ImageIcon("/Users/ekeneezeobi/Documents/GitHub/PMT/icon.png");
+
+        JLabel logo = new JLabel(icon);
+        logo.setBounds(570,20,50, 50);
         logo.setBackground(Color.WHITE);
         logo.setOpaque(true);
         logo.setBorder(BorderFactory.createEmptyBorder());
@@ -107,7 +109,7 @@ public class PmtView extends JFrame{
 
 
         JLabel tag = new JLabel("Projects");
-        tag.setBounds(550,70,100, 25);
+        tag.setBounds(550,100,100, 25);
         tag.setFont(new Font("Times New Roman", Font.BOLD, 25));
         tag.setBackground(Color.WHITE);
         tag.setOpaque(true);
@@ -169,26 +171,26 @@ public class PmtView extends JFrame{
         secondPanel.setBackground(Color.decode("#D3D3D3"));
         panel.add(secondPanel);
 
-        JButton update = new JButton("Update");
-        update.setBounds(610,630,50, 25);
-        update.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-        update.setBackground(Color.decode("#3B9EBF"));
-        update.setOpaque(true);
-        update.setBorder(BorderFactory.createEmptyBorder());
-        update.setForeground(Color.WHITE);
-        update.setBorderPainted(false);
-        update.setFocusPainted(false);
-        update.addActionListener(new ActionListener(){
+        JButton add = new JButton("Add");
+        add.setBounds(870, 480,50, 25);
+        add.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        add.setBackground(Color.decode("#3B9EBF"));
+        add.setOpaque(true);
+        add.setBorder(BorderFactory.createEmptyBorder());
+        add.setForeground(Color.WHITE);
+        add.setBorderPainted(false);
+        add.setFocusPainted(false);
+        add.addActionListener(new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 //update button functionality goes here
             }
         });
-        secondPanel.add(update);
+        secondPanel.add(add);
 
         JButton delete = new JButton("Cancel");
-        delete.setBounds(670,630,50, 25);
+        delete.setBounds(930, 480,50, 25);
         delete.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         delete.setBackground(Color.RED);
         delete.setOpaque(true);
@@ -225,8 +227,10 @@ public class PmtView extends JFrame{
         });
         panel.add(exit);
 
-        JLabel logo = new JLabel("P.M.T Logo");
-        logo.setBounds(550,40,100, 25);
+        ImageIcon icon = new ImageIcon("/Users/ekeneezeobi/Documents/GitHub/PMT/icon.png");
+
+        JLabel logo = new JLabel(icon);
+        logo.setBounds(570,20,50, 50);
         logo.setBackground(Color.WHITE);
         logo.setOpaque(true);
         logo.setBorder(BorderFactory.createEmptyBorder());
@@ -234,7 +238,7 @@ public class PmtView extends JFrame{
 
 
         JLabel tag = new JLabel("Projects");
-        tag.setBounds(550,70,100, 25);
+        tag.setBounds(550,100,100, 25);
         tag.setFont(new Font("Times New Roman", Font.BOLD, 25));
         tag.setBackground(Color.WHITE);
         tag.setOpaque(true);
@@ -348,6 +352,73 @@ public class PmtView extends JFrame{
         panel.add(vERisk);
 
 
+        JLabel name = new JLabel("Company Name:");
+        name.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        name.setForeground(Color.BLACK);
+        name.setBounds(10, 30, 300, 25);
+        secondPanel.add(name);
+
+        JTextField nameText = new JTextField(20);
+        nameText.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        nameText.setBackground(Color.WHITE);
+        nameText.setBounds(150, 30, 850, 25);
+        secondPanel.add(nameText);
+
+        JLabel owner = new JLabel("Project Owner:");
+        owner.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        owner.setForeground(Color.BLACK);
+        owner.setBounds(10, 80, 300, 25);
+        secondPanel.add(owner);
+
+        JTextField ownerText = new JTextField(20);
+        ownerText.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        ownerText.setBackground(Color.WHITE);
+        ownerText.setBounds(150, 80, 850, 25);
+        secondPanel.add(ownerText);
+
+
+        JLabel manager = new JLabel("Project Manager:");
+        manager.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        manager.setForeground(Color.BLACK);
+        manager.setBounds(10, 130, 300, 25);
+        secondPanel.add(manager);
+
+        JTextField managerText = new JTextField(20);
+        managerText.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        managerText.setBackground(Color.WHITE);
+        managerText.setBounds(150, 130, 850, 25);
+        secondPanel.add(managerText);
+
+        JLabel members = new JLabel("Team Members:");
+        members.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        members.setForeground(Color.BLACK);
+        members.setBounds(10, 180, 300, 25);
+        secondPanel.add(members);
+
+        JTextField membersText = new JTextField(20);
+        membersText.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        membersText.setBackground(Color.WHITE);
+        membersText.setBounds(150, 180, 850, 25);
+        secondPanel.add(membersText);
+
+        JLabel description = new JLabel("Project Description:");
+        description.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        description.setForeground(Color.BLACK);
+        description.setBounds(10, 230, 300, 25);
+        secondPanel.add(description);
+
+        JTextArea descriptionText = new JTextArea();
+        descriptionText.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        descriptionText.setBackground(Color.WHITE);
+        descriptionText.setBounds(150, 230, 850, 200);
+        descriptionText.setLineWrap(true); // Makes lines wrap
+        descriptionText.setWrapStyleWord(true);
+        secondPanel.add(descriptionText);
+
+        JScrollPane scrollPane = new JScrollPane(descriptionText);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setBounds(150, 230, 850, 200);
+        secondPanel.add(scrollPane);
 
         majorFrame.add(panel);
     }
