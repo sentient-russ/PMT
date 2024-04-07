@@ -18,6 +18,34 @@ public class ProjectModel {
         this.projEstimatedHours = projEstimatedHoursIn;
         this.projStatus = projStatusIn;
     }
+
+    public int getProjId() {
+        return projId;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public String getProjOwner() {
+        return projOwner;
+    }
+
+    public String getProjManager() {
+        return projManager;
+    }
+
+    public String getProjDescription() {
+        return projDescription;
+    }
+
+    public String getProjEstimatedHours() {
+        return projEstimatedHours;
+    }
+
+    public String getProjStatus() {
+        return projStatus;
+    }
     public String toString() {
         return "'" + this.projId + "'";
     }
