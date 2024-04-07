@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
@@ -38,14 +36,10 @@ public class PmtView extends JFrame{
         add.setForeground(Color.WHITE);
         add.setBorderPainted(false);
         add.setFocusPainted(false);
-        add.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-              //add button functionality goes here
-                addNewPage();
-                panel.setVisible(false);
-            }
+        add.addActionListener(e -> {
+          //add button functionality goes here
+            addNewPage();
+            panel.setVisible(false);
         });
         panel.add(add);
 
@@ -58,12 +52,8 @@ public class PmtView extends JFrame{
         delete.setForeground(Color.WHITE);
         delete.setBorderPainted(false);
         delete.setFocusPainted(false);
-        delete.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //delete button functionality goes here
-            }
+        delete.addActionListener(e -> {
+            //delete button functionality goes here
         });
         panel.add(delete);
 
@@ -76,13 +66,9 @@ public class PmtView extends JFrame{
         exit.setForeground(Color.WHITE);
         exit.setBorderPainted(false);
         exit.setFocusPainted(false);
-        exit.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //exit button functionality goes here
-                majorFrame.dispose();
-            }
+        exit.addActionListener(e -> {
+            //exit button functionality goes here
+            majorFrame.dispose();
         });
         panel.add(exit);
 
@@ -134,27 +120,23 @@ public class PmtView extends JFrame{
         update.setForeground(Color.WHITE);
         update.setBorderPainted(false);
         update.setFocusPainted(false);
-        update.addActionListener(new ActionListener(){
+        update.addActionListener(e -> {
+            //update button functionality goes here
+            int selectedRow = projects.getSelectedRow();
+            if (selectedRow >= 0) {
+                DefaultTableModel model1 = (DefaultTableModel) projects.getModel();
+                selectedCompanyName = model1.getValueAt(selectedRow, 1).toString();
+                selectedOwner = model1.getValueAt(selectedRow, 2).toString();
+                selectedManager = model1.getValueAt(selectedRow, 3).toString();
+                selectedDescription = model1.getValueAt(selectedRow, 4).toString();
+                selectedEstimatedHours = model1.getValueAt(selectedRow, 5).toString();
+                selectedStatus = model1.getValueAt(selectedRow, 6).toString();
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //update button functionality goes here
-                int selectedRow = projects.getSelectedRow();
-                if (selectedRow >= 0) {
-                    DefaultTableModel model = (DefaultTableModel) projects.getModel();
-                    selectedCompanyName = model.getValueAt(selectedRow, 1).toString();
-                    selectedOwner = model.getValueAt(selectedRow, 2).toString();
-                    selectedManager = model.getValueAt(selectedRow, 3).toString();
-                    selectedDescription = model.getValueAt(selectedRow, 4).toString();
-                    selectedEstimatedHours = model.getValueAt(selectedRow, 5).toString();
-                    selectedStatus = model.getValueAt(selectedRow, 6).toString();
-
-                    // Now open updatePage populated with this data
-                    updatePage();
-                    panel.setVisible(false);
-                } else {
-                    JOptionPane.showMessageDialog(majorFrame, "Please select a row to update.");
-                }
+                // Now open updatePage populated with this data
+                updatePage();
+                panel.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(majorFrame, "Please select a row to update.");
             }
         });
         panel.add(update);
@@ -202,12 +184,8 @@ public class PmtView extends JFrame{
         add.setForeground(Color.WHITE);
         add.setBorderPainted(false);
         add.setFocusPainted(false);
-        add.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //update button functionality goes here
-            }
+        add.addActionListener(e -> {
+            //update button functionality goes here
         });
         secondPanel.add(add);
 
@@ -220,12 +198,8 @@ public class PmtView extends JFrame{
         delete.setForeground(Color.WHITE);
         delete.setBorderPainted(false);
         delete.setFocusPainted(false);
-        delete.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //delete button functionality goes here
-            }
+        delete.addActionListener(e -> {
+            //delete button functionality goes here
         });
         secondPanel.add(delete);
 
@@ -239,13 +213,9 @@ public class PmtView extends JFrame{
         exit.setForeground(Color.WHITE);
         exit.setBorderPainted(false);
         exit.setFocusPainted(false);
-        exit.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //exit button functionality goes here
-                majorFrame.dispose();
-            }
+        exit.addActionListener(e -> {
+            //exit button functionality goes here
+            majorFrame.dispose();
         });
         panel.add(exit);
 
@@ -278,14 +248,10 @@ public class PmtView extends JFrame{
         home.setForeground(Color.WHITE);
         home.setBorderPainted(false);
         home.setFocusPainted(false);
-        home.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //home button functionality goes here
-                panel.setVisible(false);
-                startPage();
-            }
+        home.addActionListener(e -> {
+            //home button functionality goes here
+            panel.setVisible(false);
+            startPage();
         });
         panel.add(home);
 
@@ -299,14 +265,10 @@ public class PmtView extends JFrame{
         back.setForeground(Color.WHITE);
         back.setBorderPainted(false);
         back.setFocusPainted(false);
-        back.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //back button functionality goes here
-                panel.setVisible(false);
-                startPage();
-            }
+        back.addActionListener(e -> {
+            //back button functionality goes here
+            panel.setVisible(false);
+            startPage();
         });
         panel.add(back);
 
@@ -320,14 +282,10 @@ public class PmtView extends JFrame{
         TMembers.setForeground(Color.WHITE);
         TMembers.setBorderPainted(false);
         TMembers.setFocusPainted(false);
-        TMembers.addActionListener(new ActionListener(){
+        TMembers.addActionListener(e -> {
+            //View or edit Team members button functionality goes here
+            panel.setVisible(false);
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //View or edit Team members button functionality goes here
-                panel.setVisible(false);
-
-            }
         });
         panel.add(TMembers);
 
@@ -341,14 +299,10 @@ public class PmtView extends JFrame{
         vERequirements.setForeground(Color.WHITE);
         vERequirements.setBorderPainted(false);
         vERequirements.setFocusPainted(false);
-        vERequirements.addActionListener(new ActionListener(){
+        vERequirements.addActionListener(e -> {
+            //view or edit requirements button functionality goes here
+            panel.setVisible(false);
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //view or edit requirements button functionality goes here
-                panel.setVisible(false);
-
-            }
         });
         panel.add(vERequirements);
 
@@ -362,14 +316,10 @@ public class PmtView extends JFrame{
         vERisk.setForeground(Color.WHITE);
         vERisk.setBorderPainted(false);
         vERisk.setFocusPainted(false);
-        vERisk.addActionListener(new ActionListener(){
+        vERisk.addActionListener(e -> {
+            //view or edit risk button functionality goes here
+            panel.setVisible(false);
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //view or edit risk button functionality goes here
-                panel.setVisible(false);
-
-            }
         });
         panel.add(vERisk);
 
@@ -490,12 +440,8 @@ public class PmtView extends JFrame{
         update.setForeground(Color.WHITE);
         update.setBorderPainted(false);
         update.setFocusPainted(false);
-        update.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //update button functionality goes here
-            }
+        update.addActionListener(e -> {
+            //update button functionality goes here
         });
         secondPanel.add(update);
 
@@ -508,12 +454,8 @@ public class PmtView extends JFrame{
         delete.setForeground(Color.WHITE);
         delete.setBorderPainted(false);
         delete.setFocusPainted(false);
-        delete.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //delete button functionality goes here
-            }
+        delete.addActionListener(e -> {
+            //delete button functionality goes here
         });
         secondPanel.add(delete);
 
@@ -527,13 +469,9 @@ public class PmtView extends JFrame{
         exit.setForeground(Color.WHITE);
         exit.setBorderPainted(false);
         exit.setFocusPainted(false);
-        exit.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //exit button functionality goes here
-                majorFrame.dispose();
-            }
+        exit.addActionListener(e -> {
+            //exit button functionality goes here
+            majorFrame.dispose();
         });
         panel.add(exit);
 
@@ -566,14 +504,10 @@ public class PmtView extends JFrame{
         home.setForeground(Color.WHITE);
         home.setBorderPainted(false);
         home.setFocusPainted(false);
-        home.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //home button functionality goes here
-                panel.setVisible(false);
-                startPage();
-            }
+        home.addActionListener(e -> {
+            //home button functionality goes here
+            panel.setVisible(false);
+            startPage();
         });
         panel.add(home);
 
@@ -587,14 +521,10 @@ public class PmtView extends JFrame{
         back.setForeground(Color.WHITE);
         back.setBorderPainted(false);
         back.setFocusPainted(false);
-        back.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //back button functionality goes here
-                panel.setVisible(false);
-                startPage();
-            }
+        back.addActionListener(e -> {
+            //back button functionality goes here
+            panel.setVisible(false);
+            startPage();
         });
         panel.add(back);
 
@@ -608,14 +538,10 @@ public class PmtView extends JFrame{
         TMembers.setForeground(Color.WHITE);
         TMembers.setBorderPainted(false);
         TMembers.setFocusPainted(false);
-        TMembers.addActionListener(new ActionListener(){
+        TMembers.addActionListener(e -> {
+            //View or edit Team members button functionality goes here
+            panel.setVisible(false);
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //View or edit Team members button functionality goes here
-                panel.setVisible(false);
-
-            }
         });
         panel.add(TMembers);
 
@@ -629,14 +555,10 @@ public class PmtView extends JFrame{
         vERequirements.setForeground(Color.WHITE);
         vERequirements.setBorderPainted(false);
         vERequirements.setFocusPainted(false);
-        vERequirements.addActionListener(new ActionListener(){
+        vERequirements.addActionListener(e -> {
+            //view or edit requirements button functionality goes here
+            panel.setVisible(false);
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //view or edit requirements button functionality goes here
-                panel.setVisible(false);
-
-            }
         });
         panel.add(vERequirements);
 
@@ -650,14 +572,10 @@ public class PmtView extends JFrame{
         vERisk.setForeground(Color.WHITE);
         vERisk.setBorderPainted(false);
         vERisk.setFocusPainted(false);
-        vERisk.addActionListener(new ActionListener(){
+        vERisk.addActionListener(e -> {
+            //view or edit risk button functionality goes here
+            panel.setVisible(false);
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //view or edit risk button functionality goes here
-                panel.setVisible(false);
-
-            }
         });
         panel.add(vERisk);
 
