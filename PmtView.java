@@ -10,7 +10,6 @@ public class PmtView extends JTable {
         setDefaultRenderer(Object.class, new ProjectsViewCells());
         setRowHeight(20);
     }
-
     public void scrollBarUpdateProjectViewTable(JScrollPane scroll) {
         scroll.setVerticalScrollBar(new CustomScrollBar());
         JPanel panel = new JPanel();
@@ -19,7 +18,6 @@ public class PmtView extends JTable {
         scroll.getViewport().setBackground(new Color(222, 225, 226));
         scroll.setBorder(BorderFactory.createLineBorder(new Color(54, 69, 79)));
     }
-
     private class ProjectsViewTable extends DefaultTableCellRenderer {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -29,7 +27,6 @@ public class PmtView extends JTable {
             return comp;
         }
     }
-
     private class ProjectsViewCells extends DefaultTableCellRenderer {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {

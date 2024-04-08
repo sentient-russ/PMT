@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
@@ -32,6 +33,12 @@ public class PMTApplication extends javax.swing.JFrame {
         });
         //Runs example-test cases. Remove for final release.
         //RussTestCases();
+    }
+    private class PmtApplicationHeader extends DefaultTableCellRenderer{
+        @Override
+        public Component getTableCellRendererComponent(JTable jTable, Object o, boolean bin, boolean bln1, int i, int i1 ){
+            return super.getTableCellRendererComponent(jTable, o, bin, bln1, i, i1);
+        }
     }
     //This method is called from within the PMTApplication constructor above to initialize the form table.
     private void initComponents() {
