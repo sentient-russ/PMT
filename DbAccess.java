@@ -303,6 +303,20 @@ public class DbAccess {
      Hours Block
      *******************/
     /*
+     *@param projIdIn the project id for the expended hours total that will be returned
+     *@return count total of all expended hours records for a specified project id
+     */
+    public int calcExpendedTotal(int projIdIn) {
+        int count = 0;
+        ArrayList<ExpendedHoursModel> allRecords = GetExpendedHours(projIdIn);
+        for (int i = 0; i < allRecords.size(); i++) {
+            if (allRecords.get(i).projNumber == projIdIn) {
+                count += Integer.parseInt(allRecords.get(i).expNumHours);
+            }
+        }
+        return count;
+    }
+    /*
      *@param projIdIn the project id for the expended hours list that will be returned
      *@return resultsList list of expended hours records for a specified project id
      */
