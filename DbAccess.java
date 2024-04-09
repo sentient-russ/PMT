@@ -3,18 +3,18 @@
 import java.sql.*;
 import java.util.ArrayList;
 public class DbAccess {
-    String user = "classremote";
-    String pass = "FiddleDeeStix1928";
+    private static String user = "classremote";
+    private static String pass = "FiddleDeeStix1928";
     public DbAccess(){
     }
     /*******************
      Projects Block
      *******************/
-    public ArrayList<ProjectModel> GetProjects(){
+    public static ArrayList<ProjectModel> GetProjects(){
         ArrayList<ProjectModel> resultsList = new ArrayList<>();
         try{
             String query = "SELECT * FROM pmt.Projects";
-            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
+            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", user, pass);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while(resultSet.next()){
