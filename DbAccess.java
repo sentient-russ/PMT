@@ -33,6 +33,26 @@ public class DbAccess {
         }
         return resultsList;
     }
+    public ProjectModel GetProject(int projIdIn) {
+        ProjectModel foundProject = new ProjectModel();
+        try {
+            String query = "SELECT * FROM pmt.Projects WHERE projId=?";
+            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, projIdIn);
+            ResultSet result = stmt.executeQuery();
+            foundProject.projId = result.getInt("reqId");
+            foundProject.companyName = result.getString("companyName");
+            foundProject.projOwner = result.getString("projOwner");
+            foundProject.projManager = result.getString("projManager");
+            foundProject.projDescription = result.getString("projDescription");
+            foundProject.projEstimatedHours = result.getString("projEstimatedHours");
+            foundProject.projStatus = result.getString("projStatus");
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return foundProject;
+    }
     public ArrayList<ProjectModel> InsertProject(ProjectModel newProjectIn){
         String companyName = newProjectIn.companyName, projOwner = newProjectIn.projOwner, projManager = newProjectIn.projManager, projDescription = newProjectIn.projDescription, projEstimatedHours  = newProjectIn.projEstimatedHours, projStatus = newProjectIn.projStatus;
         if(newProjectIn.companyName == null || newProjectIn.projOwner == null || newProjectIn.projManager == null || newProjectIn.projDescription == null || newProjectIn.projEstimatedHours == null || newProjectIn.projStatus == null){
@@ -192,7 +212,7 @@ public class DbAccess {
     public ArrayList<TeamMemberModel> GetTeamMembers(int projIdIn){
         ArrayList<TeamMemberModel> teamMemberList = new ArrayList<>();
         try{
-            String query = "SELECT * FROM pmt.TeamMemebers WHERE projNumber=?";
+            String query = "SELECT * FROM pmt.TeamMembers WHERE projNumber=?";
             Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setInt(1, projIdIn);
