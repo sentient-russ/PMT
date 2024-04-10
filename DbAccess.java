@@ -3,18 +3,18 @@
 import java.sql.*;
 import java.util.ArrayList;
 public class DbAccess {
-    String user = "classremote";
-    String pass = "FiddleDeeStix1928";
+    private static String user = "classremote";
+    private static String pass = "FiddleDeeStix1928";
     public DbAccess(){
     }
     /*******************
      Projects Block
      *******************/
-    public ArrayList<ProjectModel> GetProjects(){
+    public static ArrayList<ProjectModel> GetProjects(){
         ArrayList<ProjectModel> resultsList = new ArrayList<>();
         try{
             String query = "SELECT * FROM pmt.Projects";
-            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
+            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", user, pass);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while(resultSet.next()){
@@ -65,8 +65,8 @@ public class DbAccess {
             Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
             Statement statement = connection.createStatement();
             String query = "INSERT INTO pmt.Projects" +
-                            "(companyName, projOwner, projManager, projDescription, projEstimatedHours, projStatus )" +
-                            " VALUES('"+ companyName +"','"+ projOwner +"','"+ projManager +"','"+ projDescription +"','"+ projEstimatedHours +"','"+ projStatus +"')";
+                    "(companyName, projOwner, projManager, projDescription, projEstimatedHours, projStatus )" +
+                    " VALUES('"+ companyName +"','"+ projOwner +"','"+ projManager +"','"+ projDescription +"','"+ projEstimatedHours +"','"+ projStatus +"')";
             statement.executeUpdate(query);
         }catch (SQLException e){
             System.out.println(e);
@@ -250,8 +250,8 @@ public class DbAccess {
             Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
             Statement statement = connection.createStatement();
             String query = "INSERT INTO pmt.TeamMembers" +
-                    "(memberFirstName, memberLastName, memberPrimaryRole)" +
-                    " VALUES('"+ memberFirstName +"','"+ memberLastName +"','"+ memberPrimaryRole +"')";
+                    "(projNumber, memberFirstName, memberLastName, memberPrimaryRole)" +
+                    " VALUES('"+ projNumber +"','"+ memberFirstName +"','"+ memberLastName +"','"+ memberPrimaryRole +"')";
             statement.executeUpdate(query);
         }catch (SQLException e){
             System.out.println(e);
