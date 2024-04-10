@@ -1,11 +1,11 @@
 public class ProjectModel {
-    int projId = 0;
-    String companyName = "";
-    String projOwner = "";
-    String projManager = "";
-    String projDescription = "";
-    String projEstimatedHours = "";
-    String projStatus = "";
+    private int projId = 0;
+    private String companyName = "";
+    private String projOwner = "";
+    private String projManager = "";
+    private String projDescription = "";
+    private String projEstimatedHours = "";
+    private String projStatus = "";
     public ProjectModel(){
 
     }
@@ -17,6 +17,34 @@ public class ProjectModel {
         this.projDescription = projDescriptionIn;
         this.projEstimatedHours = projEstimatedHoursIn;
         this.projStatus = projStatusIn;
+    }
+
+    public void setProjId(int projId) {
+        this.projId = projId;
+    }
+
+    public void setProjDescription(String projDescription) {
+        this.projDescription = projDescription;
+    }
+
+    public void setProjOwner(String projOwner) {
+        this.projOwner = projOwner;
+    }
+
+    public void setProjManager(String projManager) {
+        this.projManager = projManager;
+    }
+
+    public void setProjEstimatedHours(String projEstimatedHours) {
+        this.projEstimatedHours = projEstimatedHours;
+    }
+
+    public void setProjStatus(String projStatus) {
+        this.projStatus = projStatus;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public int getProjId() {

@@ -19,13 +19,13 @@ public class DbAccess {
             ResultSet resultSet = statement.executeQuery(query);
             while(resultSet.next()){
                 ProjectModel foundProject = new ProjectModel();
-                foundProject.projId = resultSet.getInt("projId");
-                foundProject.projOwner = resultSet.getString("projOwner");
-                foundProject.projManager = resultSet.getString("projManager");
-                foundProject.companyName = resultSet.getString("companyName");
-                foundProject.projDescription = resultSet.getString("projDescription");
-                foundProject.projEstimatedHours = resultSet.getString("projEstimatedHours");
-                foundProject.projStatus = resultSet.getString("projStatus");
+                foundProject.setProjId(resultSet.getInt("projId"));
+                foundProject.setProjOwner(resultSet.getString("projOwner"));
+                foundProject.setProjManager(resultSet.getString("projManager"));
+                foundProject.setCompanyName(resultSet.getString("companyName"));
+                foundProject.setProjDescription(resultSet.getString("projDescription"));
+                foundProject.setProjEstimatedHours(resultSet.getString("projEstimatedHours"));
+                foundProject.setProjStatus(resultSet.getString("projStatus"));
                 resultsList.add(foundProject);
             }
         }catch (SQLException e){
@@ -41,24 +41,27 @@ public class DbAccess {
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setInt(1, projIdIn);
             ResultSet result = stmt.executeQuery();
-            foundProject.projId = result.getInt("reqId");
-            foundProject.companyName = result.getString("companyName");
-            foundProject.projOwner = result.getString("projOwner");
-            foundProject.projManager = result.getString("projManager");
-            foundProject.projDescription = result.getString("projDescription");
-            foundProject.projEstimatedHours = result.getString("projEstimatedHours");
-            foundProject.projStatus = result.getString("projStatus");
+            foundProject.setProjId(result.getInt("reqId"));
+            foundProject.setCompanyName(result.getString("companyName"));
+            foundProject.setProjOwner(result.getString("projOwner"));
+            foundProject.setProjManager(result.getString("projManager"));
+            foundProject.setProjDescription(result.getString("projDescription"));
+            foundProject.setProjEstimatedHours(result.getString("projEstimatedHours"));
+            foundProject.setProjStatus(result.getString("projStatus"));
         } catch (SQLException e) {
             System.out.println(e);
         }
         return foundProject;
     }
     public ArrayList<ProjectModel> InsertProject(ProjectModel newProjectIn){
-        String companyName = newProjectIn.companyName, projOwner = newProjectIn.projOwner, projManager = newProjectIn.projManager, projDescription = newProjectIn.projDescription, projEstimatedHours  = newProjectIn.projEstimatedHours, projStatus = newProjectIn.projStatus;
-        if(newProjectIn.companyName == null || newProjectIn.projOwner == null || newProjectIn.projManager == null || newProjectIn.projDescription == null || newProjectIn.projEstimatedHours == null || newProjectIn.projStatus == null){
+        String companyName = newProjectIn.getCompanyName(), projOwner = newProjectIn.getProjOwner();
+        String projManager = newProjectIn.getProjManager(), projDescription = newProjectIn.getProjDescription();
+        String projEstimatedHours  = newProjectIn.getProjEstimatedHours(), projStatus = newProjectIn.getProjStatus();
+
+        if(newProjectIn.getCompanyName() == null || newProjectIn.getProjOwner() == null || newProjectIn.getProjManager() == null || newProjectIn.getProjDescription() == null || newProjectIn.getProjEstimatedHours() == null || newProjectIn.getProjStatus() == null){
             ArrayList<ProjectModel> updatedList = new ArrayList<>();
-            updatedList.get(0).projId = 0;
-            updatedList.get(0).projDescription = "Passing projects with null values is not permissible.  Passing empty strings or zeros are permissible.";
+            updatedList.get(0).setProjId(0);
+            updatedList.get(0).setProjDescription("Passing projects with null values is not permissible.  Passing empty strings or zeros are permissible.");
             return updatedList;
         }
         try{
@@ -79,13 +82,13 @@ public class DbAccess {
             String query = ("UPDATE pmt.Projects SET companyName=?, projOwner=?, projManager=?,projDescription=?,projEstimatedHours=?,projStatus=? WHERE projId=?");
             Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setInt(7, projectIn.projId);
-            stmt.setString(1, projectIn.companyName);
-            stmt.setString(2, projectIn.projOwner);
-            stmt.setString(3, projectIn.projManager);
-            stmt.setString(4, projectIn.projDescription);
-            stmt.setString(5, projectIn.projEstimatedHours);
-            stmt.setString(6, projectIn.projStatus);
+            stmt.setInt(7, projectIn.getProjId());
+            stmt.setString(1, projectIn.getCompanyName());
+            stmt.setString(2, projectIn.getProjOwner());
+            stmt.setString(3, projectIn.getProjManager());
+            stmt.setString(4, projectIn.getProjDescription());
+            stmt.setString(5, projectIn.getProjEstimatedHours());
+            stmt.setString(6, projectIn.getProjStatus());
             stmt.executeUpdate();
         } catch (SQLException e){
             System.out.println(e);
@@ -123,11 +126,11 @@ public class DbAccess {
             ResultSet resultSet = stmt.executeQuery();
             while(resultSet.next()){
                 RequirementModel foundRequirement = new RequirementModel();
-                foundRequirement.reqId = resultSet.getInt("reqId");
-                foundRequirement.projNumber = resultSet.getInt("projNumber");
-                foundRequirement.reqType = resultSet.getString("reqType");
-                foundRequirement.reqDescription = resultSet.getString("reqDescription");
-                foundRequirement.reqStatus = resultSet.getString("reqStatus");
+                foundRequirement.setReqId(resultSet.getInt("reqId"));
+                foundRequirement.setProjNumber(resultSet.getInt("projNumber"));
+                foundRequirement.setReqType(resultSet.getString("reqType"));
+                foundRequirement.setReqDescription(resultSet.getString("reqDescription"));
+                foundRequirement.setReqStatus(resultSet.getString("reqStatus"));
                 resultsList.add(foundRequirement);
             }
         }catch (SQLException e){
@@ -141,12 +144,12 @@ public class DbAccess {
      *@return updatedReqList list of updated requirements for a specific project id
      */
     public ArrayList<RequirementModel> InsertRequirement(RequirementModel reqIn){
-        int projNumber = reqIn.projNumber;
-        String reqType = reqIn.reqType, reqDescription = reqIn.reqDescription, reqStatus = reqIn.reqStatus;
-        if(!(reqIn.projNumber >= 0) || reqType == null || reqDescription == null || reqStatus == null){
+        int projNumber = reqIn.getProjNumber();
+        String reqType = reqIn.getReqType(), reqDescription = reqIn.getReqDescription(), reqStatus = reqIn.getReqStatus();
+        if(!(reqIn.getProjNumber() >= 0) || reqType == null || reqDescription == null || reqStatus == null){
             ArrayList<RequirementModel> updatedReqList = new ArrayList<>();
-            updatedReqList.get(0).reqId = 0;
-            updatedReqList.get(0).reqDescription = "Passing requirements with null values is not permissible.  Passing empty strings or zeros are permissible.";
+            updatedReqList.get(0).setReqId(0);
+            updatedReqList.get(0).setReqDescription("Passing requirements with null values is not permissible.  Passing empty strings or zeros are permissible.");
             return updatedReqList;
         }
         try{
@@ -159,7 +162,7 @@ public class DbAccess {
         }catch (SQLException e){
             System.out.println(e);
         }
-        ArrayList<RequirementModel> updatedReqList = GetRequirements(reqIn.projNumber);
+        ArrayList<RequirementModel> updatedReqList = GetRequirements(reqIn.getProjNumber());
         return updatedReqList;
     }
     /*
@@ -172,15 +175,15 @@ public class DbAccess {
             String query = ("UPDATE pmt.ProjReq SET reqType=?, reqDescription=?, reqStatus=? WHERE reqId=?");
             Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setInt(4, reqIn.reqId);
-            stmt.setString(1, reqIn.reqType);
-            stmt.setString(2, reqIn.reqDescription);
-            stmt.setString(3, reqIn.reqStatus);
+            stmt.setInt(4, reqIn.getReqId());
+            stmt.setString(1, reqIn.getReqType());
+            stmt.setString(2, reqIn.getReqDescription());
+            stmt.setString(3, reqIn.getReqStatus());
             stmt.executeUpdate();
         } catch (SQLException e){
             System.out.println(e);
         }
-        ArrayList<RequirementModel> updatedReqList = GetRequirements(reqIn.projNumber);
+        ArrayList<RequirementModel> updatedReqList = GetRequirements(reqIn.getProjNumber());
         return updatedReqList;
     }
     /*
@@ -219,11 +222,11 @@ public class DbAccess {
             ResultSet resultSet = stmt.executeQuery();
             while(resultSet.next()){
                 TeamMemberModel foundMember = new TeamMemberModel();
-                foundMember.memberId = resultSet.getInt("memberId");
-                foundMember.projNumber = resultSet.getInt("projNumber");
-                foundMember.memberFirstName = resultSet.getString("memberFirstName");
-                foundMember.memberLastName = resultSet.getString("memberLastName");
-                foundMember.memberPrimaryRole = resultSet.getString("memberPrimaryRole");
+                foundMember.setMemberId(resultSet.getInt("memberId"));
+                foundMember.setProjNumber(resultSet.getInt("projNumber"));
+                foundMember.setMemberFirstName(resultSet.getString("memberFirstName"));
+                foundMember.setMemberLastName(resultSet.getString("memberLastName"));
+                foundMember.setMemberPrimaryRole(resultSet.getString("memberPrimaryRole"));
                 teamMemberList.add(foundMember);
             }
         }catch (SQLException e){
@@ -237,13 +240,13 @@ public class DbAccess {
      *@return teamMemberList update list of team members for a specific project id
      */
     public ArrayList<TeamMemberModel> InsertTeamMember(TeamMemberModel teamMemberIn){
-        int  projNumber= teamMemberIn.projNumber;
-        String memberFirstName = teamMemberIn.memberFirstName, memberLastName = teamMemberIn.memberLastName, memberPrimaryRole = teamMemberIn.memberPrimaryRole;
+        int  projNumber= teamMemberIn.getProjNumber();
+        String memberFirstName = teamMemberIn.getMemberFirstName(), memberLastName = teamMemberIn.getMemberLastName(), memberPrimaryRole = teamMemberIn.getMemberPrimaryRole();
         if(!(projNumber >= 0) || memberFirstName == null || memberLastName == null || memberPrimaryRole == null){
             ArrayList<TeamMemberModel> teamMemberList = new ArrayList<>();
-            teamMemberList.get(0).memberId = 0;
-            teamMemberList.get(0).memberFirstName = "No Nulls";
-            teamMemberList.get(0).memberLastName = "No Nulls";
+            teamMemberList.get(0).setMemberId(0);
+            teamMemberList.get(0).setMemberFirstName("No Nulls");
+            teamMemberList.get(0).setMemberLastName("No Nulls");
             return teamMemberList;
         }
         try{
@@ -256,7 +259,7 @@ public class DbAccess {
         }catch (SQLException e){
             System.out.println(e);
         }
-        ArrayList<TeamMemberModel> teamMemberList = GetTeamMembers(teamMemberIn.projNumber);
+        ArrayList<TeamMemberModel> teamMemberList = GetTeamMembers(teamMemberIn.getProjNumber());
         return teamMemberList;
     }
     /*
@@ -269,15 +272,15 @@ public class DbAccess {
             String query = ("UPDATE pmt.TeamMembers SET memberFirstName=?, memberLastName=?, memberPrimaryRole=? WHERE memberId=?");
             Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setInt(4, teamMemberIn.memberId);
-            stmt.setString(1, teamMemberIn.memberFirstName);
-            stmt.setString(2, teamMemberIn.memberLastName);
-            stmt.setString(3, teamMemberIn.memberPrimaryRole);
+            stmt.setInt(4, teamMemberIn.getMemberId());
+            stmt.setString(1, teamMemberIn.getMemberFirstName());
+            stmt.setString(2, teamMemberIn.getMemberLastName());
+            stmt.setString(3, teamMemberIn.getMemberPrimaryRole());
             stmt.executeUpdate();
         } catch (SQLException e){
             System.out.println(e);
         }
-        ArrayList<TeamMemberModel> teamMemberList = GetTeamMembers(teamMemberIn.projNumber);
+        ArrayList<TeamMemberModel> teamMemberList = GetTeamMembers(teamMemberIn.getProjNumber());
         return teamMemberList;
     }
     /*
@@ -310,8 +313,8 @@ public class DbAccess {
         int count = 0;
         ArrayList<ExpendedHoursModel> allRecords = GetExpendedHours(projIdIn);
         for (int i = 0; i < allRecords.size(); i++) {
-            if (allRecords.get(i).projNumber == projIdIn) {
-                count += Integer.parseInt(allRecords.get(i).expNumHours);
+            if (allRecords.get(i).getProjNumber() == projIdIn) {
+                count += Integer.parseInt(allRecords.get(i).getExpNumHours());
             }
         }
         return count;
@@ -330,11 +333,11 @@ public class DbAccess {
             ResultSet resultSet = stmt.executeQuery();
             while(resultSet.next()){
                 ExpendedHoursModel foundExpHoursRecord = new ExpendedHoursModel();
-                foundExpHoursRecord.expId = resultSet.getInt("expId");
-                foundExpHoursRecord.expHoursType = resultSet.getString("expHoursType");
-                foundExpHoursRecord.projNumber = resultSet.getInt("projNumber");
-                foundExpHoursRecord.expDescription = resultSet.getString("expDescription");
-                foundExpHoursRecord.expNumHours = resultSet.getString("expNumHours");
+                foundExpHoursRecord.setExpId(resultSet.getInt("expId"));
+                foundExpHoursRecord.setExpHoursType(resultSet.getString("expHoursType"));
+                foundExpHoursRecord.setProjNumber(resultSet.getInt("projNumber"));
+                foundExpHoursRecord.setExpDescription(resultSet.getString("expDescription"));
+                foundExpHoursRecord.setExpNumHours(resultSet.getString("expNumHours"));
                 expendedHoursList.add(foundExpHoursRecord);
             }
         }catch (SQLException e){
@@ -348,12 +351,14 @@ public class DbAccess {
      *@return expendedHoursList list of updated expended hours records for a specific project id
      */
     public ArrayList<ExpendedHoursModel> InsertExpendedHours(ExpendedHoursModel expendedHoursIn){
-        int  projNumber= expendedHoursIn.projNumber;
-        String memberFirstName = expendedHoursIn.memberFirstName, memberLastName = expendedHoursIn.memberLastName, expHoursType = expendedHoursIn.expHoursType, expDescription = expendedHoursIn.expDescription, expNumHours = expendedHoursIn.expNumHours;
+        int  projNumber= expendedHoursIn.getProjNumber();
+        String memberFirstName = expendedHoursIn.getMemberFirstName(), memberLastName = expendedHoursIn.getMemberLastName();
+        String expHoursType = expendedHoursIn.getExpHoursType(), expDescription = expendedHoursIn.getExpDescription();
+        String expNumHours = expendedHoursIn.getExpNumHours();
         if(!(projNumber >= 0) || memberFirstName == null || memberLastName == null || expHoursType == null || expDescription == null || expNumHours == null ){
             ArrayList<ExpendedHoursModel> expendedHoursList = new ArrayList<>();
-            expendedHoursList.get(0).expId = 0;
-            expendedHoursList.get(0).expDescription = "No Nulls Allowed!";
+            expendedHoursList.get(0).setExpId(0);
+            expendedHoursList.get(0).setExpDescription("No Nulls Allowed!");
             return expendedHoursList;
         }
         try{
@@ -366,7 +371,7 @@ public class DbAccess {
         }catch (SQLException e){
             System.out.println(e);
         }
-        ArrayList<ExpendedHoursModel> expendedHoursList = GetExpendedHours(expendedHoursIn.projNumber);
+        ArrayList<ExpendedHoursModel> expendedHoursList = GetExpendedHours(expendedHoursIn.getProjNumber());
         return expendedHoursList;
     }
     /*
@@ -405,10 +410,10 @@ public class DbAccess {
             ResultSet resultSet = stmt.executeQuery();
             while(resultSet.next()){
                 RiskModel foundRisksRecord = new RiskModel();
-                foundRisksRecord.riskId = resultSet.getInt("riskId");
-                foundRisksRecord.projNumber = resultSet.getInt("projNumber");
-                foundRisksRecord.riskDescription = resultSet.getString("riskDescription");
-                foundRisksRecord.riskStatus = resultSet.getString("riskStatus");
+                foundRisksRecord.setRiskId(resultSet.getInt("riskId"));
+                foundRisksRecord.setProjNumber(resultSet.getInt("projNumber"));
+                foundRisksRecord.setRiskDescription(resultSet.getString("riskDescription"));
+                foundRisksRecord.setRiskStatus(resultSet.getString("riskStatus"));
                 foundRisksList.add(foundRisksRecord);
             }
         }catch (SQLException e){
@@ -422,12 +427,12 @@ public class DbAccess {
      *@return updatedRiskList list of updated risk records for a specific project id
      */
     public ArrayList<RiskModel> InsertExpendedHours(RiskModel newRiskIn){
-        int  projNumber= newRiskIn.projNumber;
-        String riskDescription = newRiskIn.riskDescription, riskStatus = newRiskIn.riskStatus;
+        int  projNumber= newRiskIn.getProjNumber();
+        String riskDescription = newRiskIn.getRiskDescription(), riskStatus = newRiskIn.getRiskStatus();
         if(!(projNumber >= 0) || riskDescription == null || riskStatus == null){
             ArrayList<RiskModel> updatedRiskList = new ArrayList<>();
-            updatedRiskList.get(0).riskId = 0;
-            updatedRiskList.get(0).riskDescription = "No Nulls Allowed!";
+            updatedRiskList.get(0).setRiskId(0);
+            updatedRiskList.get(0).setRiskDescription("No Nulls Allowed!");
             return updatedRiskList;
         }
         try{
@@ -440,7 +445,7 @@ public class DbAccess {
         }catch (SQLException e){
             System.out.println(e);
         }
-        ArrayList<RiskModel> updatedRiskList = GetRisks(newRiskIn.projNumber);
+        ArrayList<RiskModel> updatedRiskList = GetRisks(newRiskIn.getProjNumber());
         return updatedRiskList;
     }
     /*
@@ -453,15 +458,15 @@ public class DbAccess {
             String query = ("UPDATE pmt.ProjRisks SET projId=?, riskDescription=?, riskStatus=? WHERE riskId=?");
             Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setInt(4, riskIn.riskId);
-            stmt.setInt(1, riskIn.projNumber);
-            stmt.setString(2, riskIn.riskDescription);
-            stmt.setString(3, riskIn.riskStatus);
+            stmt.setInt(4, riskIn.getRiskId());
+            stmt.setInt(1, riskIn.getProjNumber());
+            stmt.setString(2, riskIn.getRiskDescription());
+            stmt.setString(3, riskIn.getRiskStatus());
             stmt.executeUpdate();
         } catch (SQLException e){
             System.out.println(e);
         }
-        ArrayList<RiskModel> updatedRisksList = GetRisks(riskIn.projNumber);
+        ArrayList<RiskModel> updatedRisksList = GetRisks(riskIn.getProjNumber());
         return updatedRisksList;
     }
     /*
