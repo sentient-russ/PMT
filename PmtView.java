@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import java.util.ArrayList;
 
 
+
 public class PmtView extends JFrame{
 
     static JFrame majorFrame = new JFrame("PMT");
@@ -284,8 +285,8 @@ public class PmtView extends JFrame{
         TMembers.setFocusPainted(false);
         TMembers.addActionListener(e -> {
             //View or edit Team members button functionality goes here
+            editTeamMembers();
             panel.setVisible(false);
-
         });
         panel.add(TMembers);
 
@@ -416,6 +417,7 @@ public class PmtView extends JFrame{
         scrollPane.setBounds(150, 330, 850, 100);
         secondPanel.add(scrollPane);
 
+
         majorFrame.add(panel);
     }
 
@@ -540,6 +542,7 @@ public class PmtView extends JFrame{
         TMembers.setFocusPainted(false);
         TMembers.addActionListener(e -> {
             //View or edit Team members button functionality goes here
+            editTeamMembers();
             panel.setVisible(false);
 
         });
@@ -671,6 +674,118 @@ public class PmtView extends JFrame{
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setBounds(150, 330, 850, 100);
         secondPanel.add(scrollPane);
+
+//        JLabel projId = new JLabel("Proj. #");
+//        projId.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+//        projId.setForeground(Color.BLACK);
+//        projId.setBounds(10, 330, 300, 25);
+//        secondPanel.add(projId);
+//
+//        JLabel projStatus = new JLabel("Proj. Status");
+//        projStatus.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+//        projStatus.setForeground(Color.BLACK);
+//        projStatus.setBounds(10, 330, 300, 25);
+//        secondPanel.add(projStatus);
+//
+//        JLabel riskStatus = new JLabel("Risk Status");
+//        riskStatus.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+//        riskStatus.setForeground(Color.BLACK);
+//        riskStatus.setBounds(10, 330, 300, 25);
+//        secondPanel.add(riskStatus);
+//
+//        JLabel projhrs = new JLabel("Projected Hrs.");
+//        projhrs.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+//        projhrs.setForeground(Color.BLACK);
+//        projhrs.setBounds(10, 330, 300, 25);
+//        secondPanel.add(projhrs);
+//
+//        JLabel expendedProjHrs = new JLabel("Total Expended Proj. Hrs");
+//        expendedProjHrs.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+//        expendedProjHrs.setForeground(Color.BLACK);
+//        expendedProjHrs.setBounds(10, 330, 300, 25);
+//        secondPanel.add(expendedProjHrs);
+
+        majorFrame.add(panel);
+    }
+
+    public static void editTeamMembers(){
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBounds(0,0,1200, 800);
+        panel.setBackground(Color.WHITE);
+
+        JPanel secondPanel = new JPanel();
+        secondPanel.setLayout(null);
+        secondPanel.setBounds(90,150,1020, 520);
+        secondPanel.setBackground(Color.decode("#D3D3D3"));
+        panel.add(secondPanel);
+
+
+        JLabel title = new JLabel("View/Edit Team Members");
+        title.setFont(new Font("Times New Roman", Font.BOLD, 35));
+        title.setForeground(Color.BLACK);
+        title.setBounds(400, 10, 400, 50);
+        panel.add(title);
+
+
+        JLabel projId = new JLabel("Proj. #");
+        projId.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        projId.setForeground(Color.BLACK);
+        projId.setBounds(100, 70, 200, 25);
+        panel.add(projId);
+
+        ProjectModel project = new ProjectModel();
+        JLabel projidText = new JLabel(String.valueOf(project.getProjId()));
+        projidText.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        projidText.setForeground(Color.BLACK);
+        projidText.setBounds(100, 100, 200, 25);
+        panel.add(projidText);
+
+
+
+        JLabel projStatus = new JLabel("Proj. Status");
+        projStatus.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        projStatus.setForeground(Color.BLACK);
+        projStatus.setBounds(300, 70, 200, 25);
+        panel.add(projStatus);
+
+        JLabel projStatusText = new JLabel(String.valueOf(project.getProjStatus()));
+        projStatusText.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        projStatusText.setForeground(Color.BLACK);
+        projStatusText.setBounds(100, 100, 200, 25);
+        panel.add(projStatusText);
+
+
+
+
+        JLabel riskStatus = new JLabel("Risk Status");
+        riskStatus.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        riskStatus.setForeground(Color.BLACK);
+        riskStatus.setBounds(500, 70, 200, 25);
+        panel.add(riskStatus);
+
+
+        JLabel riskStatusText = new JLabel("");
+        riskStatusText.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        riskStatusText.setForeground(Color.BLACK);
+        riskStatusText.setBounds(100, 100, 200, 25);
+        panel.add(riskStatusText);
+
+
+
+
+        JLabel projhrs = new JLabel("Projected Hrs.");
+        projhrs.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        projhrs.setForeground(Color.BLACK);
+        projhrs.setBounds(700, 70, 200, 25);
+        panel.add(projhrs);
+
+        JLabel expendedProjHrs = new JLabel("Total Expended Proj. Hrs");
+        expendedProjHrs.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        expendedProjHrs.setForeground(Color.BLACK);
+        expendedProjHrs.setBounds(900, 70, 200, 25);
+        panel.add(expendedProjHrs);
+
 
         majorFrame.add(panel);
     }
