@@ -250,8 +250,8 @@ public class DbAccess {
             Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
             Statement statement = connection.createStatement();
             String query = "INSERT INTO pmt.TeamMembers" +
-                    "(memberFirstName, memberLastName, memberPrimaryRole)" +
-                    " VALUES('"+ memberFirstName +"','"+ memberLastName +"','"+ memberPrimaryRole +"')";
+                    "(projNumber, memberFirstName, memberLastName, memberPrimaryRole)" +
+                    " VALUES('"+ projNumber +"','"+ memberFirstName +"','"+ memberLastName +"','"+ memberPrimaryRole +"')";
             statement.executeUpdate(query);
         }catch (SQLException e){
             System.out.println(e);
