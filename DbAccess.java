@@ -3,7 +3,7 @@
 import java.sql.*;
 import java.util.ArrayList;
 public class DbAccess {
-   private static String user = "classremote";
+    private static String user = "classremote";
     private static String pass = "FiddleDeeStix1928";
     public DbAccess(){
     }
@@ -33,6 +33,26 @@ public class DbAccess {
         }
         return resultsList;
     }
+    public ProjectModel GetProject(int projIdIn) {
+        ProjectModel foundProject = new ProjectModel();
+        try {
+            String query = "SELECT * FROM pmt.Projects WHERE projId=?";
+            Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, projIdIn);
+            ResultSet result = stmt.executeQuery();
+            foundProject.projId = result.getInt("reqId");
+            foundProject.companyName = result.getString("companyName");
+            foundProject.projOwner = result.getString("projOwner");
+            foundProject.projManager = result.getString("projManager");
+            foundProject.projDescription = result.getString("projDescription");
+            foundProject.projEstimatedHours = result.getString("projEstimatedHours");
+            foundProject.projStatus = result.getString("projStatus");
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return foundProject;
+    }
     public ArrayList<ProjectModel> InsertProject(ProjectModel newProjectIn){
         String companyName = newProjectIn.companyName, projOwner = newProjectIn.projOwner, projManager = newProjectIn.projManager, projDescription = newProjectIn.projDescription, projEstimatedHours  = newProjectIn.projEstimatedHours, projStatus = newProjectIn.projStatus;
         if(newProjectIn.companyName == null || newProjectIn.projOwner == null || newProjectIn.projManager == null || newProjectIn.projDescription == null || newProjectIn.projEstimatedHours == null || newProjectIn.projStatus == null){
@@ -45,8 +65,8 @@ public class DbAccess {
             Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
             Statement statement = connection.createStatement();
             String query = "INSERT INTO pmt.Projects" +
-                            "(companyName, projOwner, projManager, projDescription, projEstimatedHours, projStatus )" +
-                            " VALUES('"+ companyName +"','"+ projOwner +"','"+ projManager +"','"+ projDescription +"','"+ projEstimatedHours +"','"+ projStatus +"')";
+                    "(companyName, projOwner, projManager, projDescription, projEstimatedHours, projStatus )" +
+                    " VALUES('"+ companyName +"','"+ projOwner +"','"+ projManager +"','"+ projDescription +"','"+ projEstimatedHours +"','"+ projStatus +"')";
             statement.executeUpdate(query);
         }catch (SQLException e){
             System.out.println(e);
@@ -192,7 +212,7 @@ public class DbAccess {
     public ArrayList<TeamMemberModel> GetTeamMembers(int projIdIn){
         ArrayList<TeamMemberModel> teamMemberList = new ArrayList<>();
         try{
-            String query = "SELECT * FROM pmt.TeamMemebers WHERE projNumber=?";
+            String query = "SELECT * FROM pmt.TeamMembers WHERE projNumber=?";
             Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setInt(1, projIdIn);
@@ -230,8 +250,8 @@ public class DbAccess {
             Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass);
             Statement statement = connection.createStatement();
             String query = "INSERT INTO pmt.TeamMembers" +
-                    "(memberFirstName, memberLastName, memberPrimaryRole)" +
-                    " VALUES('"+ memberFirstName +"','"+ memberLastName +"','"+ memberPrimaryRole +"')";
+                    "(projNumber, memberFirstName, memberLastName, memberPrimaryRole)" +
+                    " VALUES('"+ projNumber +"','"+ memberFirstName +"','"+ memberLastName +"','"+ memberPrimaryRole +"')";
             statement.executeUpdate(query);
         }catch (SQLException e){
             System.out.println(e);
@@ -282,6 +302,20 @@ public class DbAccess {
     /*******************
      Hours Block
      *******************/
+    /*
+     *@param projIdIn the project id for the expended hours total that will be returned
+     *@return count total of all expended hours records for a specified project id
+     */
+    public int calcExpendedTotal(int projIdIn) {
+        int count = 0;
+        ArrayList<ExpendedHoursModel> allRecords = GetExpendedHours(projIdIn);
+        for (int i = 0; i < allRecords.size(); i++) {
+            if (allRecords.get(i).projNumber == projIdIn) {
+                count += Integer.parseInt(allRecords.get(i).expNumHours);
+            }
+        }
+        return count;
+    }
     /*
      *@param projIdIn the project id for the expended hours list that will be returned
      *@return resultsList list of expended hours records for a specified project id
