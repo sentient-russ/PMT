@@ -86,7 +86,7 @@ public class ViewProjectRequirements extends javax.swing.JFrame {
         setForeground(new java.awt.Color(102, 102, 102));
         setMaximumSize(new java.awt.Dimension(1000, 1000));
         setMinimumSize(new java.awt.Dimension(1000, 1000));
-        setPreferredSize(new java.awt.Dimension(1000, 900));
+        setPreferredSize(new java.awt.Dimension(1000, 1000));
         setResizable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pmt_logo_smaill.jpg"))); // NOI18N
@@ -341,36 +341,36 @@ public class ViewProjectRequirements extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 962, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(projectFuncBtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(projectFuncBtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(projectFuncBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(20, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 962, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addGap(540, 540, 540)
+                                            .addComponent(projectNonFuncBtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(projectNonFuncBtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(projectNonFuncBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(projectFuncBtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(projectFuncBtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(projectFuncBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(8, 8, 8)))
+                        .addContainerGap(18, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(projectFuncBtnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(149, 149, 149)
                         .addComponent(projectFuncBtnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 962, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(540, 540, 540)
-                                    .addComponent(projectNonFuncBtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(projectNonFuncBtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(projectNonFuncBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(20, 20, 20))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(202, 202, 202)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -434,25 +434,25 @@ public class ViewProjectRequirements extends javax.swing.JFrame {
                             .addComponent(TextProjId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(projectFuncBtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projectFuncBtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projectFuncBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(projectNonFuncBtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projectNonFuncBtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projectNonFuncBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGap(38, 38, 38))
         );
 
         getAccessibleContext().setAccessibleDescription("");
@@ -462,39 +462,79 @@ public class ViewProjectRequirements extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void projectNonFuncBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectNonFuncBtnAddActionPerformed
-        System.out.println("Add Non-Functional");
+        ViewAddRequirement ar = new ViewAddRequirement(projIdGlobal);
+        ar.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_projectNonFuncBtnAddActionPerformed
 
     private void projectNonFuncBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectNonFuncBtnDeleteActionPerformed
-        System.out.println("Delete Non-Functional");
+        DefaultTableModel tblModel = (DefaultTableModel) tableNonFunctionalReqProject1.getModel();
+        //if single a row is selected then delete it. Multiple delete not allowed.
+        if(tableNonFunctionalReqProject1.getSelectedRowCount() == 1){
+            int rowIndex = tableNonFunctionalReqProject1.getSelectedRow();
+            int reqId = (int)tblModel.getValueAt(rowIndex, 0);
+            dataAccess.DeleteRequirement(reqId, projIdGlobal);
+            tblModel.removeRow(rowIndex);
+            dataAccess.DeleteRequirement(reqId,projIdGlobal);
+        }  
     }//GEN-LAST:event_projectNonFuncBtnDeleteActionPerformed
 
     private void projectNonFuncBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectNonFuncBtnUpdateActionPerformed
-        System.out.println("Update Non-Functional");
+        DefaultTableModel tblModel = (DefaultTableModel) tableNonFunctionalReqProject1.getModel();
+        //if single a row is selected then delete it. Multiple delete not allowed.
+        if(tableNonFunctionalReqProject1.getSelectedRowCount() == 1){
+            int rowIndex = tableNonFunctionalReqProject1.getSelectedRow();
+            int reqId = (int)tblModel.getValueAt(rowIndex, 0);
+                java.awt.EventQueue.invokeLater(() -> {
+                    new ViewEditRequirementDetails(projIdGlobal,reqId).setVisible(true);
+                    this.setVisible(false);
+                    this.dispose();
+            });
+        }   
     }//GEN-LAST:event_projectNonFuncBtnUpdateActionPerformed
 
     private void projectFuncBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnDeleteActionPerformed
-        System.out.println("Delete Functional");
+        DefaultTableModel tblModel = (DefaultTableModel) tableFunctionalReqProject1.getModel();
+        //if single a row is selected then delete it. Multiple delete not allowed.
+        if(tableFunctionalReqProject1.getSelectedRowCount() == 1){
+            int rowIndex = tableFunctionalReqProject1.getSelectedRow();
+            int reqId = (int)tblModel.getValueAt(rowIndex, 0);
+            dataAccess.DeleteRequirement(reqId, projIdGlobal);
+            tblModel.removeRow(rowIndex);
+            dataAccess.DeleteRequirement(reqId,projIdGlobal);
+        }    
     }//GEN-LAST:event_projectFuncBtnDeleteActionPerformed
 
     private void projectFuncBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnUpdateActionPerformed
-        System.out.println("Update Functional");
+        DefaultTableModel tblModel = (DefaultTableModel) tableFunctionalReqProject1.getModel();
+        //if single a row is selected then delete it. Multiple delete not allowed.
+        if(tableFunctionalReqProject1.getSelectedRowCount() == 1){
+            int rowIndex = tableFunctionalReqProject1.getSelectedRow();
+            int reqId = (int)tblModel.getValueAt(rowIndex, 0);
+                java.awt.EventQueue.invokeLater(() -> {
+                    new ViewEditRequirementDetails(projIdGlobal,reqId).setVisible(true);
+                    this.setVisible(false);
+                    this.dispose();
+            });
+        }        
     }//GEN-LAST:event_projectFuncBtnUpdateActionPerformed
 
     private void projectFuncBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnAddActionPerformed
-        System.out.println("Add Functional");
+        ViewAddRequirement ar = new ViewAddRequirement(projIdGlobal);
+        ar.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_projectFuncBtnAddActionPerformed
 
     private void projectFuncBtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnBackActionPerformed
-                ViewProjectDetails vh = new ViewProjectDetails(projIdGlobal);
-                vh.setVisible(true);
-                this.dispose();
+        ViewProjectDetails vh = new ViewProjectDetails(projIdGlobal);
+        vh.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_projectFuncBtnBackActionPerformed
 
     private void projectFuncBtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnHomeActionPerformed
-                ViewHome vh = new ViewHome();
-                vh.setVisible(true);
-                this.dispose();
+        ViewHome vh = new ViewHome();
+        vh.setVisible(true);
+        this.dispose();
                 
     }//GEN-LAST:event_projectFuncBtnHomeActionPerformed
     public void close(){

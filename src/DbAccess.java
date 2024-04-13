@@ -165,33 +165,79 @@ public class DbAccess {
         }
         return resultsList;
     }
+    public ModelRequirement GetRequirement(int reqIdIn){
+        ModelRequirement returnReq = new ModelRequirement();
+        String query = "SELECT * FROM pmt.ProjReq WHERE reqId=?";
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass)) {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, reqIdIn);
+            ResultSet resultSet = stmt.executeQuery();
+            while(resultSet.next()){
+
+                returnReq.reqId = resultSet.getInt("reqId");
+                returnReq.projNumber = resultSet.getInt("projNumber");
+                returnReq.reqType = resultSet.getString("reqType");
+                returnReq.reqDescription = resultSet.getString("reqDescription");
+                returnReq.reqStatus = resultSet.getString("reqStatus");
+
+                    connection.close();
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        
+        return returnReq;        
+    }
+    
     /*
      * Creates a new requirement record in the Db
      * @param reqIn the project id for the requirements list that will be returned
      * @return updatedReqList list of updated requirements for a specific project id
      */
-    public ArrayList<ModelRequirement> InsertRequirement(ModelRequirement reqIn){
+    public int InsertRequirement(ModelRequirement reqIn){
 
         String reqType = reqIn.reqType, reqDescription = reqIn.reqDescription, reqStatus = reqIn.reqStatus;
+        int projNumber = reqIn.projNumber;
         if(!(reqIn.projNumber >= 0) || reqType == null || reqDescription == null || reqStatus == null){
             ArrayList<ModelRequirement> updatedReqList = new ArrayList<>();
             updatedReqList.get(0).reqId = 0;
             updatedReqList.get(0).reqDescription = "Passing requirements with null values is not permissible.  Passing empty strings or zeros are permissible.";
-            return updatedReqList;
+            return 0;
         }
         try{
             try (Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass)) {
                 Statement statement = connection.createStatement();
                 String query = "INSERT INTO pmt.ProjReq" +
-                        "(reqType, reqDescription, reqStatus)" +
-                        " VALUES('"+ reqType +"','"+ reqDescription +"','"+ reqStatus +"')";
+                        "(projNumber, reqType, reqDescription, reqStatus)" +
+                        " VALUES('"+ projNumber +"','"+ reqType +"','"+ reqDescription +"','"+ reqStatus +"')";
                 statement.executeUpdate(query);
                 connection.close();
             }
         }catch (SQLException e){
             System.out.println(e);
         }
-        return GetRequirements(reqIn.projNumber);
+        ModelRequirement foundReq = new ModelRequirement();
+        int newId = 0;
+        String query = "SELECT * FROM pmt.ProjReq WHERE reqDescription=?";
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass)) {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, reqIn.reqDescription);
+            ResultSet resultSet = stmt.executeQuery();
+            
+            while(resultSet.next()){
+
+                foundReq.reqId = resultSet.getInt("reqId");
+                foundReq.projNumber = resultSet.getInt("projNumber");
+                foundReq.reqType = resultSet.getString("reqType");
+                foundReq.reqDescription = resultSet.getString("reqDescription");
+                foundReq.reqStatus = resultSet.getString("reqStatus");
+                newId = foundReq.reqId;
+                connection.close();
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }        
+        return newId;
     }
     /*
      * Updates a requirement record
@@ -377,6 +423,35 @@ public class DbAccess {
         }
         return expendedHoursList;
     }
+
+    public int GetRequirementExpendedHours(int reqIdIn){
+        int estHoursCount = 0;
+        ArrayList<ModelEstimatedHours> estimatedHoursList = new ArrayList<>();
+        try{
+            String query = "SELECT * FROM pmt.ProjEstHours WHERE reqId=?";
+            try (Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass)) {
+                PreparedStatement stmt = connection.prepareStatement(query);
+                stmt.setInt(1, reqIdIn);
+                ResultSet resultSet = stmt.executeQuery();
+                while(resultSet.next()){
+                    ModelEstimatedHours foundEstHoursRecord = new ModelEstimatedHours();
+                    foundEstHoursRecord.estId = resultSet.getInt("estId");
+                    foundEstHoursRecord.estHoursType = resultSet.getString("estHoursType");
+                    foundEstHoursRecord.projNumber = resultSet.getInt("projNumber");
+                    foundEstHoursRecord.estDescription = resultSet.getString("estDescription");
+                    foundEstHoursRecord.estNumHours = resultSet.getString("estNumHours");
+                    estimatedHoursList.add(foundEstHoursRecord);
+                }
+                connection.close();
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        for(int i = 0; i < estimatedHoursList.size(); i++){
+            estHoursCount += Integer.parseInt(estimatedHoursList.get(i).estNumHours);
+        }
+        return estHoursCount;
+    }
     /*
      * Creates a new expended hours record in the Db
      * @param expendedHoursIn the completed expended hours model to be inserted into the Db
@@ -425,6 +500,162 @@ public class DbAccess {
         }
         return GetExpendedHours(projIdIn);
     }
+        public int GetRequirementEstimatedHours(int reqIdIn){
+        int expHoursCount = 0;
+        ArrayList<ModelExpendedHours> expendedHoursList = new ArrayList<>();
+        try{
+            String query = "SELECT * FROM pmt.ProjExpHours WHERE reqId=?";
+            try (Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass)) {
+                PreparedStatement stmt = connection.prepareStatement(query);
+                stmt.setInt(1, reqIdIn);
+                ResultSet resultSet = stmt.executeQuery();
+                while(resultSet.next()){
+                    ModelExpendedHours foundExpHoursRecord = new ModelExpendedHours();
+                    foundExpHoursRecord.expId = resultSet.getInt("expId");
+                    foundExpHoursRecord.expHoursType = resultSet.getString("expHoursType");
+                    foundExpHoursRecord.projNumber = resultSet.getInt("projNumber");
+                    foundExpHoursRecord.expDescription = resultSet.getString("expDescription");
+                    foundExpHoursRecord.expNumHours = resultSet.getString("expNumHours");
+                    expendedHoursList.add(foundExpHoursRecord);
+                }
+                connection.close();
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        for(int i = 0; i < expendedHoursList.size(); i++){
+            expHoursCount += Integer.parseInt(expendedHoursList.get(i).expNumHours);
+        }
+        return expHoursCount;
+    }
+    /*
+     * Returns the total estimated hours for a project.
+     * @param projIdIn the project id for the estimated hours list that will be returned
+     * @return resultsList list of estimated hours records for a specified project id
+     */
+    public int GetAllProjEstimateTotal (int projIdIn){
+        ArrayList<ModelEstimatedHours> estimatedHoursList = new ArrayList<>();
+        try{
+            String query = "SELECT * FROM pmt.ProjEstHours WHERE projNumber=?";
+            try (Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass)) {
+                PreparedStatement stmt = connection.prepareStatement(query);
+                stmt.setInt(1, projIdIn);
+                ResultSet resultSet = stmt.executeQuery();
+                while(resultSet.next()){
+                    ModelEstimatedHours foundEstRecord = new ModelEstimatedHours();
+                    foundEstRecord.estId = resultSet.getInt("estId");
+                    foundEstRecord.estHoursType = resultSet.getString("estHoursType");
+                    foundEstRecord.projNumber = resultSet.getInt("projNumber");
+                    foundEstRecord.estDescription = resultSet.getString("estDescription");
+                    foundEstRecord.estNumHours = resultSet.getString("estNumHours");
+                    foundEstRecord.reqNumber = resultSet.getByte("reqId");
+                    estimatedHoursList.add(foundEstRecord);
+                }
+                connection.close();
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        int hoursCount = 0;
+        for(int i = 0; i <= estimatedHoursList.size(); i++){
+        hoursCount += Integer.parseInt(estimatedHoursList.get(i).estNumHours);    
+        }       
+        return hoursCount;
+    }
+    //This is so the requirements time estmate records can be displayed in a table under estimate details
+    public ArrayList<ModelEstimatedHours> GetAllReqEstimateRecords (int reqIdIn){
+        ArrayList<ModelEstimatedHours> estimatedHoursList = new ArrayList<>();
+        try{
+            String query = "SELECT * FROM pmt.ProjEstHours WHERE reqId=?";
+            try (Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass)) {
+                PreparedStatement stmt = connection.prepareStatement(query);
+                stmt.setInt(1, reqIdIn);
+                ResultSet resultSet = stmt.executeQuery();
+                while(resultSet.next()){
+                    ModelEstimatedHours foundEstRecord = new ModelEstimatedHours();
+                    foundEstRecord.estId = resultSet.getInt("estId");
+                    foundEstRecord.estHoursType = resultSet.getString("estHoursType");
+                    foundEstRecord.projNumber = resultSet.getInt("projNumber");
+                    foundEstRecord.estDescription = resultSet.getString("estDescription");
+                    foundEstRecord.estNumHours = resultSet.getString("estNumHours");
+                    foundEstRecord.reqNumber = resultSet.getByte("reqId");
+                    estimatedHoursList.add(foundEstRecord);
+                }
+                connection.close();
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        return estimatedHoursList;
+    }
+    //This will be used to edit estimate records on the detail screen.
+    public ModelEstimatedHours GetProjEstimateRecord(int estIdIn, int reqIdIn){
+        ModelEstimatedHours estimatedHoursModel = new ModelEstimatedHours();
+        try{
+            String query = "SELECT * FROM pmt.ProjEstHours WHERE estId=? AND reqId=?";
+            try (Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass)) {
+                PreparedStatement stmt = connection.prepareStatement(query);
+                stmt.setInt(1, reqIdIn);
+                stmt.setInt(2, estIdIn);                
+                ResultSet resultSet = stmt.executeQuery();
+                while(resultSet.next()){
+                    estimatedHoursModel.estId = resultSet.getInt("estId");
+                    estimatedHoursModel.estHoursType = resultSet.getString("estHoursType");
+                    estimatedHoursModel.projNumber = resultSet.getInt("projNumber");
+                    estimatedHoursModel.estDescription = resultSet.getString("estDescription");
+                    estimatedHoursModel.estNumHours = resultSet.getString("estNumHours");
+                }
+                connection.close();
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        return estimatedHoursModel;
+    }
+    /*
+     * Creates a new estimate hours record in the Db
+     * @param estimatedHoursIn the completed estimated hours model to be inserted into the Db
+     * @return estimatedHoursList list of updated estimated hours records for a specific project id
+     */
+    public ArrayList<ModelEstimatedHours> InsertEstimatedHours(ModelEstimatedHours estimatedHoursRecordIn){
+        String memberFirstName = estimatedHoursRecordIn.memberFirstName, memberLastName = estimatedHoursRecordIn.memberLastName, estHoursType = estimatedHoursRecordIn.estHoursType, estDescription = estimatedHoursRecordIn.estDescription, estNumHours = estimatedHoursRecordIn.estNumHours;
+        int reqId = estimatedHoursRecordIn.reqNumber;
+        int projNumber = estimatedHoursRecordIn.projNumber;
+        try{
+            try (Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass)) {
+                Statement statement = connection.createStatement();
+                String query = "INSERT INTO pmt.ProjEstHours" +
+                        "(projNumber, memberFirstName, memberLastName, estHoursType, estDescription, estNumHours, reqId)" +
+                        " VALUES('" + projNumber + "','" + memberFirstName + "','" + memberLastName + "','" + estHoursType +"','"+ estDescription +"','"+ estNumHours + "','"+ reqId + "')";
+                statement.executeUpdate(query);
+                connection.close();
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        return GetAllReqEstimateRecords(estimatedHoursRecordIn.reqNumber);
+    }
+    /*
+     * Deletes an hours estimate record
+     * @param expIdIn the hours estimate id number to be deleted
+     * @param projIdIn the id for the current project. Will be used to get the updated estimated hours list
+     * @return updatedEstimatedHoursList list of updated hours list for the project
+     */
+    public ArrayList<ModelEstimatedHours> DeleteEstimatedHoursRecord(int reqIdIn){
+        try{
+            String query = ("DELETE FROM pmt.ProjEstHours  WHERE reqId=?");
+            try (Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass)) {
+                PreparedStatement stmt = connection.prepareStatement(query);
+                stmt.setInt(1, reqIdIn);
+                stmt.executeUpdate();
+                connection.close();
+            }
+        } catch (SQLException e){
+            System.out.println(e);
+        }
+        return GetAllReqEstimateRecords(reqIdIn);
+    }    
+    
 
     /*
      * @param projIdIn the project id for the project risks list that will be returned

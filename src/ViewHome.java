@@ -42,6 +42,7 @@ public class ViewHome extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Project Management Tool (P.M.T.)");
         setFocusCycleRoot(false);
         setMinimumSize(new java.awt.Dimension(1000, 1000));
         setPreferredSize(new java.awt.Dimension(1000, 1000));
@@ -198,13 +199,6 @@ public class ViewHome extends javax.swing.JFrame {
                     this.dispose();
             });
         }
-        
-        
-        
-        
-        
-        
-
     }//GEN-LAST:event_homeBtnUpdateActionPerformed
     public void close(){
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);

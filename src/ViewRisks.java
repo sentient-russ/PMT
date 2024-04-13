@@ -249,7 +249,7 @@ public class ViewRisks extends javax.swing.JFrame {
         });
 
         riskFuncBtnReset.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        riskFuncBtnReset.setForeground(new java.awt.Color(0, 51, 102));
+        riskFuncBtnReset.setForeground(new java.awt.Color(204, 0, 0));
         riskFuncBtnReset.setText("Reset");
         riskFuncBtnReset.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         riskFuncBtnReset.addActionListener(new java.awt.event.ActionListener() {

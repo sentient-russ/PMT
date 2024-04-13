@@ -1,6 +1,7 @@
 public class ModelExpendedHours {
     int expId = 0;
     int projNumber = 0;
+    int reqNumber = 0;
     String memberFirstName = "";
     String memberLastName = "";
     String expHoursType = "";
@@ -8,7 +9,7 @@ public class ModelExpendedHours {
     String expNumHours = "";
     public ModelExpendedHours(){
     }
-    public ModelExpendedHours(int expIdIn, int projNumberIn, String memberFirstNameIn, String memberLastNameIn, String expHoursTypeIn, String expDescriptionIn, String expNumHoursIn){
+    public ModelExpendedHours(int expIdIn, int projNumberIn, String memberFirstNameIn, String memberLastNameIn, String expHoursTypeIn, String expDescriptionIn, String expNumHoursIn,int reqNumberIn){
         this.expId = expIdIn;
         this.projNumber = projNumberIn;
         this.memberFirstName = memberFirstNameIn;
@@ -16,5 +17,6 @@ public class ModelExpendedHours {
         this.expHoursType = expHoursTypeIn;
         this.expDescription = expDescriptionIn;
         this.expNumHours = expNumHoursIn;
+        this.reqNumber = reqNumberIn;
     }
 }

@@ -1,7 +1,5 @@
 import java.awt.Color;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
@@ -42,9 +40,7 @@ public class ViewProjectDetails extends javax.swing.JFrame {
         if(concatenatedTeamMembers.equalsIgnoreCase("")){
             concatenatedTeamMembers = "Add team members below using the \"View/Edit Team Members\" option.";
         }
-        TextTeamMembers.setText(concatenatedTeamMembers);
-        
-
+        TextTeamMembers.setText(concatenatedTeamMembers); 
     }
 
     /**
@@ -597,8 +593,7 @@ public class ViewProjectDetails extends javax.swing.JFrame {
     private void projectFuncBtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnHomeActionPerformed
         ViewHome vh = new ViewHome();
         vh.setVisible(true);
-        this.dispose();
-                
+        this.dispose();                
     }//GEN-LAST:event_projectFuncBtnHomeActionPerformed
 
     private void TextManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextManagerActionPerformed
@@ -635,6 +630,7 @@ public class ViewProjectDetails extends javax.swing.JFrame {
         vpr.setVisible(true);
         this.setVisible(false);
         this.dispose();
+
     }//GEN-LAST:event_projectFuncBtnEditRequirementsActionPerformed
 
     private void TextCompanyNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextCompanyNameFocusGained
