@@ -614,9 +614,14 @@
             <Component class="javax.swing.JTextArea" name="TextRequirementDescription">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Enter requirement description..."/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TextRequirementDescriptionFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TextRequirementDescriptionFocusLost"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

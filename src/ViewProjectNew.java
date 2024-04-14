@@ -8,7 +8,6 @@ public class ViewProjectNew extends javax.swing.JFrame {
         initComponents();
         getContentPane().setBackground(new Color(54, 69, 79));        
         TextTotalExpended.setText("0");        
-        TextProjectedHrs.setText("0");
         TextStatus.setText("In-Process");
         TextRiskStatus.setText("Resolved");
         TextProjId.setText("0");        
@@ -56,8 +55,6 @@ public class ViewProjectNew extends javax.swing.JFrame {
         TextCompanyName = new javax.swing.JTextField();
         projectFuncBtnReset = new javax.swing.JButton();
         projectFuncBtnUpdate = new javax.swing.JButton();
-        TextProjectedHrs = new javax.swing.JTextField();
-        LabelTotalExpended10 = new javax.swing.JLabel();
         TextPlaceHolder = new javax.swing.JLabel();
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -309,28 +306,6 @@ public class ViewProjectNew extends javax.swing.JFrame {
             }
         });
 
-        TextProjectedHrs.setForeground(new java.awt.Color(51, 51, 51));
-        TextProjectedHrs.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        TextProjectedHrs.setText("0");
-        TextProjectedHrs.setMinimumSize(new java.awt.Dimension(64, 25));
-        TextProjectedHrs.setPreferredSize(new java.awt.Dimension(64, 25));
-        TextProjectedHrs.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TextProjectedHrsFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                TextProjectedHrsFocusLost(evt);
-            }
-        });
-
-        LabelTotalExpended10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        LabelTotalExpended10.setForeground(new java.awt.Color(51, 51, 51));
-        LabelTotalExpended10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        LabelTotalExpended10.setText("Projected Hours");
-        LabelTotalExpended10.setToolTipText("");
-        LabelTotalExpended10.setName(""); // NOI18N
-        LabelTotalExpended10.setPreferredSize(new java.awt.Dimension(130, 25));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -341,13 +316,11 @@ public class ViewProjectNew extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(LabelTotalExpended7, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                            .addComponent(LabelTotalExpended6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(LabelTotalExpended10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(LabelTotalExpended6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TextOwner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TextManager, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TextProjectedHrs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(TextManager, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(LabelTotalExpended8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -356,14 +329,14 @@ public class ViewProjectNew extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LabelTotalExpended5, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(projectFuncBtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(projectFuncBtnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8)))))
+                                .addGap(8, 8, 8))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(LabelTotalExpended5, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(68, 68, 68))
         );
         jPanel1Layout.setVerticalGroup(
@@ -382,13 +355,9 @@ public class ViewProjectNew extends javax.swing.JFrame {
                     .addComponent(TextManager, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelTotalExpended6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextProjectedHrs, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelTotalExpended10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelTotalExpended5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelTotalExpended5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(projectFuncBtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -496,7 +465,6 @@ public class ViewProjectNew extends javax.swing.JFrame {
 
     private void projectFuncBtnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnResetActionPerformed
         TextTotalExpended.setText("0");        
-        TextProjectedHrs.setText("0");
         TextRiskStatus.setText("Resolved");
         TextStatus.setText("In-Process");
         TextProjId.setText("0");        
@@ -513,7 +481,6 @@ public class ViewProjectNew extends javax.swing.JFrame {
         currentProj.projOwner = TextOwner.getText();
         currentProj.projManager = TextManager.getText();
         currentProj.projDescription = TextDescription.getText();
-        currentProj.projEstimatedHours = TextProjectedHrs.getText();
         currentProj.projStatus = TextStatus.getText();
         if(currentProj.companyName.equalsIgnoreCase("Enter company name...") || 
            currentProj.projDescription.equalsIgnoreCase("Enter project vision, goals, and opportunities...") ||
@@ -597,21 +564,6 @@ public class ViewProjectNew extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_TextManagerFocusLost
 
-    private void TextProjectedHrsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextProjectedHrsFocusGained
-        String buttonInitialState = TextProjectedHrs.getText();
-        if(buttonInitialState.equalsIgnoreCase("0")){
-            TextProjectedHrs.setText("");
-        } 
-
-    }//GEN-LAST:event_TextProjectedHrsFocusGained
-
-    private void TextProjectedHrsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextProjectedHrsFocusLost
-        String buttonInitialState = TextProjectedHrs.getText();
-        if(buttonInitialState.equalsIgnoreCase("")){
-            TextProjectedHrs.setText("0");
-        }   
-    }//GEN-LAST:event_TextProjectedHrsFocusLost
-
     private void TextDescriptionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextDescriptionFocusGained
         String buttonInitialState = TextDescription.getText();
         if(buttonInitialState.equalsIgnoreCase("Enter project vision, goals, and opportunities...")){
@@ -633,7 +585,6 @@ public class ViewProjectNew extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelTotalExpended;
     private javax.swing.JLabel LabelTotalExpended1;
-    private javax.swing.JLabel LabelTotalExpended10;
     private javax.swing.JLabel LabelTotalExpended2;
     private javax.swing.JLabel LabelTotalExpended3;
     private javax.swing.JLabel LabelTotalExpended4;
@@ -647,7 +598,6 @@ public class ViewProjectNew extends javax.swing.JFrame {
     private javax.swing.JTextField TextOwner;
     private javax.swing.JLabel TextPlaceHolder;
     private javax.swing.JLabel TextProjId;
-    private javax.swing.JTextField TextProjectedHrs;
     private javax.swing.JLabel TextRiskStatus;
     private javax.swing.JLabel TextStatus;
     private javax.swing.JLabel TextTotalExpended;

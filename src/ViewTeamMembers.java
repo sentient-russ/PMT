@@ -1,8 +1,5 @@
 import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import javax.swing.JScrollBar;
+import java.util.ArrayList;;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,18 +19,19 @@ public class ViewTeamMembers extends javax.swing.JFrame {
         projIdGlobal = projIdIn;
         initComponents();
         getContentPane().setBackground(new Color(54, 69, 79));
-        //Begin Header
-        TextTotalExpended.setText(Integer.toString(dataAccess.calcExpendedTotal(projIdIn)));
-        ModelProject currentProject = dataAccess.GetProject(projIdIn);        
-        TextProjectedHrs.setText(currentProject.projEstimatedHours);
-        TextRiskStatus.setText(currentProject.projStatus);
-        TextProjId.setText(Integer.toString(projIdIn));        
+        //begin header
+        TextProjId.setText(Integer.toString(projIdIn)); 
+        TextTotalExpended.setText(Double.toString(dataAccess.calcExpendedTotal(projIdIn)));            
+        TextProjectedHrs.setText(Double.toString(dataAccess.calcProjEstimateTotal(projIdIn)));        
+        int qtyRisksOutstanding = 0;        
         ArrayList<ModelRisk> risks = dataAccess.GetRisks(projIdIn);
         for(int i = 0; i <= risks.size() -1; i++){
             if(risks.get(i).riskStatus.equalsIgnoreCase("Un-Resolved")){
-                TextRiskStatus.setText("Risks Oustanding");
+                TextRiskStatus.setText("remaining");
+                qtyRisksOutstanding += 1;
             }
         }
+        TextRiskStatus.setText(qtyRisksOutstanding + " Outstanding");
         //End Header
         //Begin Table
         tableTeamMembers.scrollBarUpdateTeamMembersTable(jScrollPane1);   
@@ -320,6 +318,11 @@ public class ViewTeamMembers extends javax.swing.JFrame {
                 ComboBoxRoleFocusLost(evt);
             }
         });
+        ComboBoxRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxRoleActionPerformed(evt);
+            }
+        });
 
         TextMemberId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TextMemberId.setForeground(new java.awt.Color(0, 51, 102));
@@ -331,6 +334,7 @@ public class ViewTeamMembers extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(TextMemberId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -342,16 +346,15 @@ public class ViewTeamMembers extends javax.swing.JFrame {
                         .addComponent(LabelTotalExpended8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TextFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(LabelTotalExpended7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TextLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LabelTotalExpended6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ComboBoxRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18))
-            .addComponent(TextMemberId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ComboBoxRole, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,11 +372,11 @@ public class ViewTeamMembers extends javax.swing.JFrame {
                         .addComponent(TextLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(LabelTotalExpended7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(LabelTotalExpended6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(teamMembersFuncBtnAddUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(teamMembersFuncBtnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
@@ -439,19 +442,19 @@ public class ViewTeamMembers extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 912, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(teamMembersFuncBtnEditMemeber, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(teamMembersFuncBtnDeleteMember, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(teamMembersFuncBtnEditMemeber, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(teamMembersFuncBtnDeleteMember, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 903, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -499,23 +502,22 @@ public class ViewTeamMembers extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(TextTotalExpended, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(LabelTotalExpended, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+                            .addComponent(jSeparator5))
                         .addContainerGap(199, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addComponent(projectFuncBtnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(152, 152, 152)
+                        .addGap(172, 172, 172)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(projectFuncBtnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 22, Short.MAX_VALUE))))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 33, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -557,7 +559,7 @@ public class ViewTeamMembers extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -630,10 +632,11 @@ public class ViewTeamMembers extends javax.swing.JFrame {
     }//GEN-LAST:event_teamMembersFuncBtnAddUpdateActionPerformed
 
     private void teamMembersFuncBtnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamMembersFuncBtnResetActionPerformed
-        System.out.println("Reset Functional");
-        ModelProject currentProj = dataAccess.GetProject(projIdGlobal);
-        TextFirstName.setText(currentProj.companyName);
-        TextLastName.setText(currentProj.projOwner);
+                TextFirstName.setText("Enter first name...");
+                TextLastName.setText("Enter last name...");
+                ComboBoxRole.setSelectedItem("Select Role...");
+                String stringId = "Id: New-Member";
+                TextMemberId.setText(stringId);
 
         
     }//GEN-LAST:event_teamMembersFuncBtnResetActionPerformed
@@ -709,6 +712,10 @@ public class ViewTeamMembers extends javax.swing.JFrame {
     private void ComboBoxRoleFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ComboBoxRoleFocusLost
 
     }//GEN-LAST:event_ComboBoxRoleFocusLost
+
+    private void ComboBoxRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxRoleActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ComboBox ComboBoxRole;

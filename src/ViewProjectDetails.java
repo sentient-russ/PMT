@@ -8,28 +8,30 @@ public class ViewProjectDetails extends javax.swing.JFrame {
     DbAccess dataAccess = new DbAccess();
     int projIdGlobal = 0;
     
-    public ViewProjectDetails(int projId) {
-        
-        
+    public ViewProjectDetails(int projId) {        
         projIdGlobal = projId;
-        initComponents();
-        getContentPane().setBackground(new Color(54, 69, 79));        
-        TextTotalExpended.setText(Integer.toString(dataAccess.calcExpendedTotal(projId)));
-        ModelProject currentProject = dataAccess.GetProject(projId);        
-        TextProjectedHrs.setText(currentProject.projEstimatedHours);
-        TextRiskStatus.setText(currentProject.projStatus);
-        TextProjId.setText(Integer.toString(projId));        
+        initComponents();        
+        getContentPane().setBackground(new Color(54, 69, 79));       
+        //begin header
+        ModelProject currentProject = dataAccess.GetProject(projId); 
+        TextProjId.setText(Integer.toString(projId)); 
+        TextTotalExpended.setText(Double.toString(dataAccess.calcExpendedTotal(projId)));            
+        TextProjectedHrs.setText(Double.toString(dataAccess.calcProjEstimateTotal(projId)));        
+        int qtyRisksOutstanding = 0;        
         ArrayList<ModelRisk> risks = dataAccess.GetRisks(projId);
         for(int i = 0; i <= risks.size() -1; i++){
             if(risks.get(i).riskStatus.equalsIgnoreCase("Un-Resolved")){
-                TextRiskStatus.setText("Risks Oustanding");
+                TextRiskStatus.setText("remaining");
+                qtyRisksOutstanding += 1;
             }
         }
-        
+        TextRiskStatus.setText(qtyRisksOutstanding + " Outstanding");
+        //End Header
         TextCompanyName.setText(currentProject.companyName);
         TextOwner.setText(currentProject.projOwner);
         TextManager.setText(currentProject.projManager);
         TextDescription.setText(currentProject.projDescription);
+        
         String concatenatedTeamMembers = "";
         ArrayList<ModelTeamMember> team = dataAccess.GetTeamMembers(projId);
         
@@ -87,7 +89,7 @@ public class ViewProjectDetails extends javax.swing.JFrame {
         projectFuncBtnEditTeam = new javax.swing.JButton();
         projectFuncBtnEditRisks = new javax.swing.JButton();
         projectFuncBtnEditRequirements = new javax.swing.JButton();
-        TextProjectedHrs = new javax.swing.JTextField();
+        TextProjectedHrs = new javax.swing.JLabel();
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
@@ -450,11 +452,13 @@ public class ViewProjectDetails extends javax.swing.JFrame {
             }
         });
 
-        TextProjectedHrs.setForeground(new java.awt.Color(51, 51, 51));
-        TextProjectedHrs.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TextProjectedHrs.setForeground(new java.awt.Color(204, 204, 204));
+        TextProjectedHrs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TextProjectedHrs.setText("0");
-        TextProjectedHrs.setMinimumSize(new java.awt.Dimension(64, 25));
-        TextProjectedHrs.setPreferredSize(new java.awt.Dimension(70, 25));
+        TextProjectedHrs.setToolTipText("");
+        TextProjectedHrs.setMinimumSize(new java.awt.Dimension(100, 25));
+        TextProjectedHrs.setName(""); // NOI18N
+        TextProjectedHrs.setPreferredSize(new java.awt.Dimension(100, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -496,13 +500,10 @@ public class ViewProjectDetails extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(TextRiskStatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(LabelTotalExpended2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(TextProjectedHrs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(LabelTotalExpended1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TextProjectedHrs, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                                    .addComponent(LabelTotalExpended1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(TextTotalExpended, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -527,14 +528,16 @@ public class ViewProjectDetails extends javax.swing.JFrame {
                         .addComponent(LabelTotalExpended, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TextTotalExpended, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(LabelTotalExpended1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(TextProjectedHrs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(LabelTotalExpended2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(TextRiskStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TextProjectedHrs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(LabelTotalExpended2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LabelTotalExpended1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(TextRiskStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(LabelTotalExpended3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -709,7 +712,7 @@ public class ViewProjectDetails extends javax.swing.JFrame {
     private javax.swing.JTextField TextManager;
     private javax.swing.JTextField TextOwner;
     private javax.swing.JLabel TextProjId;
-    private javax.swing.JTextField TextProjectedHrs;
+    private javax.swing.JLabel TextProjectedHrs;
     private javax.swing.JLabel TextRiskStatus;
     private javax.swing.JLabel TextStatus;
     private javax.swing.JLabel TextTeamMembers;

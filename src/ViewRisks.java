@@ -21,18 +21,20 @@ public class ViewRisks extends javax.swing.JFrame {
         projIdGlobal = projIdIn;
         initComponents();
         getContentPane().setBackground(new Color(54, 69, 79));
-        //Begin Header
-        TextTotalExpended.setText(Integer.toString(dataAccess.calcExpendedTotal(projIdIn)));
-        ModelProject currentProject = dataAccess.GetProject(projIdIn);        
-        TextProjectedHrs.setText(currentProject.projEstimatedHours);
-        TextRiskStatus.setText(currentProject.projStatus);
-        TextProjId.setText(Integer.toString(projIdIn));        
+        //begin header
+        ModelProject currentProject = dataAccess.GetProject(projIdIn); 
+        TextProjId.setText(Integer.toString(projIdIn)); 
+        TextTotalExpended.setText(Double.toString(dataAccess.calcExpendedTotal(projIdIn)));            
+        TextProjectedHrs.setText(Double.toString(dataAccess.calcProjEstimateTotal(projIdIn)));        
+        int qtyRisksOutstanding = 0;        
         ArrayList<ModelRisk> risks = dataAccess.GetRisks(projIdIn);
         for(int i = 0; i <= risks.size() -1; i++){
             if(risks.get(i).riskStatus.equalsIgnoreCase("Un-Resolved")){
-                TextRiskStatus.setText("Risks Oustanding");
+                TextRiskStatus.setText("remaining");
+                qtyRisksOutstanding += 1;
             }
         }
+        TextRiskStatus.setText(qtyRisksOutstanding + " Outstanding");
         //End Header
         //Begin Table
         tableRisks.scrollBarUpdateTeamMembersTable(jScrollPane1);   
@@ -549,8 +551,17 @@ public class ViewRisks extends javax.swing.JFrame {
                         modelRisksTbl.addRow(new Object[]{resultsList.get(i).riskId, resultsList.get(i).riskDescription, resultsList.get(i).riskStatus});
                     }
                     TextDescription.setText("Enter risk discription...");
-                    //TextLastName.setText("Enter last name...");
                     ComboBoxStatus.setSelectedItem("Select status...");
+                    //update risks in the header
+                    int qtyRisksOutstanding = 0;        
+                    ArrayList<ModelRisk> risks = dataAccess.GetRisks(projIdGlobal);
+                    for(int i = 0; i <= risks.size() -1; i++){
+                        if(risks.get(i).riskStatus.equalsIgnoreCase("Un-Resolved")){
+                            TextRiskStatus.setText("remaining");
+                            qtyRisksOutstanding += 1;
+                        }
+                    }
+                    TextRiskStatus.setText(qtyRisksOutstanding + " Outstanding");
                 }
             } else {
                 //pre exhisting - update
@@ -558,7 +569,7 @@ public class ViewRisks extends javax.swing.JFrame {
                 String[] splitArray = toSplit.split(": ");      
                 transitionalRisk.riskId = Integer.parseInt(splitArray[1]);
                 transitionalRisk.projNumber = projIdGlobal;
-                transitionalRisk.riskStatus = TextDescription.getText();
+                transitionalRisk.riskDescription = TextDescription.getText();
                 transitionalRisk.riskStatus = ComboBoxStatus.getSelectedItem().toString();          
                 dataAccess.UpdateRisk(transitionalRisk);
                 ArrayList<ModelRisk> resultsList = dataAccess.GetRisks(projIdGlobal);
@@ -570,6 +581,16 @@ public class ViewRisks extends javax.swing.JFrame {
                 ComboBoxStatus.setSelectedItem("Select status...");
                 String stringId = "Id: New-Risk";
                 TextRiskId.setText(stringId);
+                                    //update risks in the header
+                    int qtyRisksOutstanding = 0;        
+                    ArrayList<ModelRisk> risks = dataAccess.GetRisks(projIdGlobal);
+                    for(int i = 0; i <= risks.size() -1; i++){
+                        if(risks.get(i).riskStatus.equalsIgnoreCase("Un-Resolved")){
+                            TextRiskStatus.setText("remaining");
+                            qtyRisksOutstanding += 1;
+                        }
+                    }
+                    TextRiskStatus.setText(qtyRisksOutstanding + " Outstanding");
             }
         }
     }//GEN-LAST:event_riskFuncBtnAddUpdateActionPerformed
@@ -593,7 +614,18 @@ public class ViewRisks extends javax.swing.JFrame {
             int riskId = (int)modelRisksTbl.getValueAt(rowIndex, 0);
             modelRisksTbl.removeRow(rowIndex);
             dataAccess.DeleteRisk(riskId, projIdGlobal);
+            //update risks in the header
+            int qtyRisksOutstanding = 0;        
+            ArrayList<ModelRisk> risks = dataAccess.GetRisks(projIdGlobal);
+                for(int i = 0; i <= risks.size() -1; i++){
+                if(risks.get(i).riskStatus.equalsIgnoreCase("Un-Resolved")){
+                TextRiskStatus.setText("remaining");
+                qtyRisksOutstanding += 1;
+                }
+            }
+            TextRiskStatus.setText(qtyRisksOutstanding + " Outstanding");
         }
+        
     }//GEN-LAST:event_riskFuncBtnDeleteRiskActionPerformed
 
     private void riskFuncBtnEditRiskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_riskFuncBtnEditRiskActionPerformed
@@ -608,6 +640,16 @@ public class ViewRisks extends javax.swing.JFrame {
             TextDescription.setText(riskDescription);
             ComboBoxStatus.setSelectedItem(status);            
         }
+        //update risks in the header
+        int qtyRisksOutstanding = 0;        
+        ArrayList<ModelRisk> risks = dataAccess.GetRisks(projIdGlobal);
+            for(int i = 0; i <= risks.size() -1; i++){
+            if(risks.get(i).riskStatus.equalsIgnoreCase("Un-Resolved")){
+            TextRiskStatus.setText("remaining");
+            qtyRisksOutstanding += 1;
+            }
+        }
+        TextRiskStatus.setText(qtyRisksOutstanding + " Outstanding");
     }//GEN-LAST:event_riskFuncBtnEditRiskActionPerformed
 
     private void TextDescriptionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextDescriptionFocusGained

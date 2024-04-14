@@ -17,8 +17,9 @@ public class ViewHome extends javax.swing.JFrame {
         ArrayList<ModelProject> resultsList = dataAccess.GetProjects();
         
         for (int i = 0; i <= resultsList.size() -1; i++) {
-            String hoursExpended = Integer.toString(dataAccess.calcExpendedTotal(resultsList.get(i).projId));
-            model.addRow(new Object[]{resultsList.get(i).projId, resultsList.get(i).companyName, resultsList.get(i).projDescription, resultsList.get(i).projStatus, resultsList.get(i).projEstimatedHours, hoursExpended});
+            String hoursExpended = Double.toString(dataAccess.calcExpendedTotal(resultsList.get(i).projId));
+            String hoursEstimated = Double.toString(dataAccess.calcProjEstimateTotal(resultsList.get(i).projId));
+            model.addRow(new Object[]{resultsList.get(i).projId, resultsList.get(i).companyName, resultsList.get(i).projDescription, resultsList.get(i).projStatus, hoursEstimated, hoursExpended});
         }
     }
 

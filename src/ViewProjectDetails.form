@@ -101,15 +101,10 @@
                                   <Component id="TextRiskStatus" alignment="0" max="32767" attributes="0"/>
                                   <Component id="LabelTotalExpended2" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                      <Component id="TextProjectedHrs" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="LabelTotalExpended1" min="-2" pref="130" max="-2" attributes="0"/>
-                                  </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="TextProjectedHrs" pref="142" max="32767" attributes="0"/>
+                                  <Component id="LabelTotalExpended1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -144,15 +139,18 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="TextTotalExpended" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="LabelTotalExpended1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="TextProjectedHrs" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="LabelTotalExpended2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TextRiskStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="TextProjectedHrs" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LabelTotalExpended2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LabelTotalExpended1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="TextRiskStatus" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="LabelTotalExpended3" min="-2" max="-2" attributes="0"/>
@@ -796,18 +794,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projectFuncBtnEditRequirementsActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextProjectedHrs">
+    <Component class="javax.swing.JLabel" name="TextProjectedHrs">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="33" red="33" type="rgb"/>
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[64, 25]"/>
+          <Dimension value="[100, 25]"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[70, 25]"/>
+          <Dimension value="[100, 25]"/>
         </Property>
       </Properties>
     </Component>

@@ -6,10 +6,10 @@ public class ModelExpendedHours {
     String memberLastName = "";
     String expHoursType = "";
     String expDescription = "";
-    String expNumHours = "";
+    double expNumHours = 0;
     public ModelExpendedHours(){
     }
-    public ModelExpendedHours(int expIdIn, int projNumberIn, String memberFirstNameIn, String memberLastNameIn, String expHoursTypeIn, String expDescriptionIn, String expNumHoursIn,int reqNumberIn){
+    public ModelExpendedHours(int expIdIn, int projNumberIn, String memberFirstNameIn, String memberLastNameIn, String expHoursTypeIn, String expDescriptionIn, double expNumHoursIn,int reqNumberIn){
         this.expId = expIdIn;
         this.projNumber = projNumberIn;
         this.memberFirstName = memberFirstNameIn;

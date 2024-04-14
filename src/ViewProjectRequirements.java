@@ -25,17 +25,21 @@ public class ViewProjectRequirements extends javax.swing.JFrame {
             }
         }
         
-        TextTotalExpended.setText(Integer.toString(dataAccess.calcExpendedTotal(projId)));
-        ModelProject currentProject = dataAccess.GetProject(projId);
-        TextProjectedHrs.setText(currentProject.projEstimatedHours);
-        TextRiskStatus.setText(currentProject.projStatus);
-        TextProjId.setText(Integer.toString(projId));        
+        //begin header
+        ModelProject currentProject = dataAccess.GetProject(projId); 
+        TextProjId.setText(Integer.toString(projId)); 
+        TextTotalExpended.setText(Double.toString(dataAccess.calcExpendedTotal(projId)));            
+        TextProjectedHrs.setText(Double.toString(dataAccess.calcProjEstimateTotal(projId)));        
+        int qtyRisksOutstanding = 0;        
         ArrayList<ModelRisk> risks = dataAccess.GetRisks(projId);
         for(int i = 0; i <= risks.size() -1; i++){
             if(risks.get(i).riskStatus.equalsIgnoreCase("Un-Resolved")){
-                TextRiskStatus.setText("Risks Oustanding");
-            }    
-        }       
+                TextRiskStatus.setText("remaining");
+                qtyRisksOutstanding += 1;
+            }
+        }
+        TextRiskStatus.setText(qtyRisksOutstanding + " Outstanding");
+        //End Header 
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -462,7 +466,9 @@ public class ViewProjectRequirements extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void projectNonFuncBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectNonFuncBtnAddActionPerformed
-        ViewAddRequirement ar = new ViewAddRequirement(projIdGlobal);
+        String reqType = "Non-Functional";        
+        ViewAddRequirement ar = new ViewAddRequirement(projIdGlobal, reqType);
+
         ar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_projectNonFuncBtnAddActionPerformed
@@ -480,8 +486,8 @@ public class ViewProjectRequirements extends javax.swing.JFrame {
     }//GEN-LAST:event_projectNonFuncBtnDeleteActionPerformed
 
     private void projectNonFuncBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectNonFuncBtnUpdateActionPerformed
-        DefaultTableModel tblModel = (DefaultTableModel) tableNonFunctionalReqProject1.getModel();
-        //if single a row is selected then delete it. Multiple delete not allowed.
+        DefaultTableModel tblModel = (DefaultTableModel) tableNonFunctionalReqProject1.getModel();        
+        //if single a row is selected then delete it. Multiple delete not allowed.        
         if(tableNonFunctionalReqProject1.getSelectedRowCount() == 1){
             int rowIndex = tableNonFunctionalReqProject1.getSelectedRow();
             int reqId = (int)tblModel.getValueAt(rowIndex, 0);
@@ -520,7 +526,8 @@ public class ViewProjectRequirements extends javax.swing.JFrame {
     }//GEN-LAST:event_projectFuncBtnUpdateActionPerformed
 
     private void projectFuncBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnAddActionPerformed
-        ViewAddRequirement ar = new ViewAddRequirement(projIdGlobal);
+        String reqType = "Functional";
+        ViewAddRequirement ar = new ViewAddRequirement(projIdGlobal, reqType);
         ar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_projectFuncBtnAddActionPerformed

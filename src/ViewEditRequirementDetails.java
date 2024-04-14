@@ -25,17 +25,19 @@ public class ViewEditRequirementDetails extends javax.swing.JFrame {
         initComponents();
         getContentPane().setBackground(new Color(54, 69, 79));
         //Begin Header
-        TextTotalExpended.setText(Integer.toString(dataAccess.calcExpendedTotal(projIdIn)));
+        TextTotalExpended.setText(Double.toString(dataAccess.calcExpendedTotal(projIdIn)));
         ModelProject currentProject = dataAccess.GetProject(projIdIn);        
         TextProjectedHrs.setText(currentProject.projEstimatedHours);
-        TextRiskStatus.setText(currentProject.projStatus);
         TextProjId.setText(Integer.toString(projIdIn));        
+        int qtyRisksOutstanding = 0;        
         ArrayList<ModelRisk> risks = dataAccess.GetRisks(projIdIn);
         for(int i = 0; i <= risks.size() -1; i++){
             if(risks.get(i).riskStatus.equalsIgnoreCase("Un-Resolved")){
-                TextRiskStatus.setText("Risks Oustanding");
+                TextRiskStatus.setText("remaining");
+                qtyRisksOutstanding += 1;
             }
         }
+        TextRiskStatus.setText(qtyRisksOutstanding + " Outstanding");
         //End Header
         //Begin details
         ModelRequirement reqModel = dataAccess.GetRequirement(reqIdIn);
@@ -253,8 +255,17 @@ public class ViewEditRequirementDetails extends javax.swing.JFrame {
         });
 
         TextRequirementDescription.setColumns(20);
+        TextRequirementDescription.setLineWrap(true);
         TextRequirementDescription.setRows(5);
         TextRequirementDescription.setText("Enter requirement description...");
+        TextRequirementDescription.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TextRequirementDescriptionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TextRequirementDescriptionFocusLost(evt);
+            }
+        });
         jScrollPane2.setViewportView(TextRequirementDescription);
 
         LabelTotalExpended10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -569,7 +580,9 @@ public class ViewEditRequirementDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_projectFuncBtnHomeActionPerformed
 
     private void requirementFuncBtnUpdateExpendedHoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requirementFuncBtnUpdateExpendedHoursActionPerformed
-
+        ViewUpdateHoursExpended vhours = new ViewUpdateHoursExpended(projIdGlobal,reqIdGlobal);
+        vhours.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_requirementFuncBtnUpdateExpendedHoursActionPerformed
 
     private void requirementFuncBtnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requirementFuncBtnResetActionPerformed
@@ -620,8 +633,24 @@ public class ViewEditRequirementDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_requirementFuncBtnSaveActionPerformed
 
     private void requirementFuncBtnUpdateEstimatedHoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requirementFuncBtnUpdateEstimatedHoursActionPerformed
-        // TODO add your handling code here:
+        ViewUpdateHoursEstimated vEsthours = new ViewUpdateHoursEstimated(projIdGlobal,reqIdGlobal);
+        vEsthours.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_requirementFuncBtnUpdateEstimatedHoursActionPerformed
+
+    private void TextRequirementDescriptionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextRequirementDescriptionFocusGained
+        String buttonInitialState = TextRequirementDescription.getText();
+        if(buttonInitialState.equalsIgnoreCase("Enter requirement description...")){
+        TextRequirementDescription.setText("");
+        }    
+    }//GEN-LAST:event_TextRequirementDescriptionFocusGained
+
+    private void TextRequirementDescriptionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextRequirementDescriptionFocusLost
+        String buttonInitialState = TextRequirementDescription.getText();
+        if(buttonInitialState.equalsIgnoreCase("")){
+            TextRequirementDescription.setText("Enter requirement description...");
+        }
+    }//GEN-LAST:event_TextRequirementDescriptionFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ComboBox ComboBoxRequirementStatus;
