@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="PMT:jar">
+    <output-path>$USER_HOME$/Desktop/PMT_ARCHIVE</output-path>
+    <root id="archive" name="PMT.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$USER_HOME$/Desktop/PMT_ARCHIVE/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="PMT" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/swingx-1.6.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/swing-worker-1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-j-8.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/filters-2.0.235.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/TimingFramework-0.55.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
