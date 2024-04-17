@@ -609,6 +609,7 @@ public class ViewAddRequirement extends javax.swing.JFrame {
         String description = TextRequirementDescription.getText();
         if(button1InitialState.equalsIgnoreCase("Select type...") || button2InitialState.equalsIgnoreCase("Select status...") || description.equalsIgnoreCase("Enter requirement description...")){
             //do nothing maybe display error
+            //
         } else{
             //DefaultTableModel modelTeamMembersTbl = (DefaultTableModel)tableTeamMembers.getModel();
             ModelRequirement updateRequirement = new ModelRequirement();

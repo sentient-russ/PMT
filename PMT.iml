@@ -7,5 +7,13 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="mysql-connector-j-8.3.0" level="project" />
+    <orderEntry type="library" name="swing-worker-1.1" level="project" />
+    <orderEntry type="library" name="filters-2.0.235" level="project" />
+    <orderEntry type="library" name="swingx-1.6.1" level="project" />
+    <orderEntry type="library" name="TimingFramework-0.55" level="project" />
+    <orderEntry type="library" name="mysql-connector-j-8.3.0" level="application" />
+    <orderEntry type="library" name="swing-worker-1.1" level="application" />
+    <orderEntry type="library" name="swingx-1.6.1" level="application" />
   </component>
 </module>

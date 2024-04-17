@@ -268,7 +268,7 @@ public class ViewUpdateHoursEstimated extends javax.swing.JFrame {
         jLabel4.setText("Add/Edit New");
 
         ComboBoxWorkType.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, null, null, new java.awt.Color(153, 153, 153))));
-        ComboBoxWorkType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select type...", "Project Management", "Business Analysis", "Requirements Gathering", "Requirements Documentation", "System Design", "UI Design", "UX Design", "Prototyping", "UML Diagraming", "Database Design", "Consultation", "Client Presentation", "Testing", "Quality Assurance", "Technical Support" }));
+        ComboBoxWorkType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select type...", "Consultation", "Client Presentation", "Project Management", "Business Analysis", "Requirements Gathering", "Requirements Documentation", "System Design", "UI Design", "UX Design", "Prototyping", "UML Diagraming", "Database Design", "Code Writing", "Testing", "Quality Assurance", "Technical Support" }));
         ComboBoxWorkType.setMinimumSize(new java.awt.Dimension(163, 33));
         ComboBoxWorkType.setPreferredSize(new java.awt.Dimension(163, 33));
         ComboBoxWorkType.addActionListener(new java.awt.event.ActionListener() {

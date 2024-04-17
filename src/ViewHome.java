@@ -1,8 +1,10 @@
-import java.awt.Color;
-import java.awt.Toolkit;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
 
 public class ViewHome extends javax.swing.JFrame {
     DbAccess dataAccess = new DbAccess();
@@ -177,14 +179,31 @@ public class ViewHome extends javax.swing.JFrame {
     }//GEN-LAST:event_homeBtnAddActionPerformed
 
     private void homeBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnDeleteActionPerformed
-        DefaultTableModel tblModel = (DefaultTableModel) homeTbl1.getModel();
-        //if single a row is selected then delete it. Multiple delete not allowed.
-        if(homeTbl1.getSelectedRowCount() == 1){
-            int rowIndex = homeTbl1.getSelectedRow();
-            int projId = (int)tblModel.getValueAt(rowIndex, 0);
-            tblModel.removeRow(rowIndex);
-            dataAccess.DeleteProject(projId);
-        }
+
+            JFrame frame = new JFrame("Confirmation");
+            JPanel panel = new JPanel();
+            LayoutManager layout = new FlowLayout();
+            panel.setLayout(layout);
+            final JLabel label = new JLabel();
+            int result = JOptionPane.showConfirmDialog(frame,"Are you sure? Delete record?", "Confirmation",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+                label.setText("You selected: Yes");
+                DefaultTableModel tblModel = (DefaultTableModel) homeTbl1.getModel();
+                //if single a row is selected then delete it. Multiple delete not allowed.
+                if(homeTbl1.getSelectedRowCount() == 1){
+                    int rowIndex = homeTbl1.getSelectedRow();
+                    int projId = (int)tblModel.getValueAt(rowIndex, 0);
+                    tblModel.removeRow(rowIndex);
+                    dataAccess.DeleteProject(projId);
+                }
+            }else if (result == JOptionPane.NO_OPTION){
+                //do nothing
+            }else {
+                //do nothing
+            }
+
     }//GEN-LAST:event_homeBtnDeleteActionPerformed
 
     private void homeBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnUpdateActionPerformed
