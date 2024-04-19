@@ -1,5 +1,5 @@
-import java.awt.Color;
-import java.awt.Toolkit;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
@@ -567,14 +567,23 @@ public class ViewProjectDetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void projectFuncBtnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnResetActionPerformed
-        System.out.println("Reset Functional");
-        ModelProject currentProj = dataAccess.GetProject(projIdGlobal);
-        TextCompanyName.setText(currentProj.companyName);
-        TextOwner.setText(currentProj.projOwner);
-        TextManager.setText(currentProj.projManager);
-        TextDescription.setText(currentProj.projDescription);        
-    }//GEN-LAST:event_projectFuncBtnResetActionPerformed
-
+        JFrame frame = new JFrame("Confirmation");
+        JPanel panel = new JPanel();
+        LayoutManager layout = new FlowLayout();
+        panel.setLayout(layout);
+        final JLabel label = new JLabel();
+        int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to reset?", "Confirmation",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_OPTION) {
+            System.out.println("Reset Functional");
+            ModelProject currentProj = dataAccess.GetProject(projIdGlobal);
+            TextCompanyName.setText(currentProj.companyName);
+            TextOwner.setText(currentProj.projOwner);
+            TextManager.setText(currentProj.projManager);
+            TextDescription.setText(currentProj.projDescription);
+        }//GEN-LAST:event_projectFuncBtnResetActionPerformed
+    }
     private void projectFuncBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnUpdateActionPerformed
         System.out.println("Update Functional");
         ModelProject currentProj = dataAccess.GetProject(projIdGlobal);

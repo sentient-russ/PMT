@@ -9,7 +9,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67b43c2b-6c91-41ce-86fa-74afc13ddcac" name="Changes" comment="" />
+    <list default="true" id="67b43c2b-6c91-41ce-86fa-74afc13ddcac" name="Changes" comment="Changes made to workspace.xml file">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewAddRequirement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewAddRequirement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewHome$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewHome$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewHome$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewHome$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewHome$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewHome$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewHome$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewHome$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewHome.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewHome.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewHome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewProjectDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewProjectDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewProjectRequirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewProjectRequirements.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewRisks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewRisks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewTeamMembers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewTeamMembers.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,12 +35,30 @@
       </list>
     </option>
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/main" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "IbrahimaDiallo32"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/sentient-russ/PMT.git",
+    "accountId": "b03e85ec-7fb2-4ca2-bf23-e6ab0f439a6d"
+  }
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
   <component name="ProjectId" id="2eumYVc0EarsbWxN16imE0F2K4f" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -35,15 +66,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ConfirmationDialog.executor": "Run",
+    "Application.ViewHome.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/russe/Desktop/PMT_ARCHIVE",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "configurable.group.build"
@@ -76,5 +111,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Changes made to workspace.xml file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes made to workspace.xml file" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file:///private/var/folders/2y/ngs4xds169g9qwvjyvk1z56c0000gn/T/tmp_8_PmtView.class</url>
+          <line>6</line>
+          <properties field="selectedCompanyName" class="PmtView" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

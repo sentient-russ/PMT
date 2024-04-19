@@ -1,8 +1,7 @@
-import java.awt.Color;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import javax.swing.JScrollBar;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -607,25 +606,35 @@ public class ViewRisks extends javax.swing.JFrame {
     }//GEN-LAST:event_TextDescriptionActionPerformed
 
     private void riskFuncBtnDeleteRiskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_riskFuncBtnDeleteRiskActionPerformed
-        DefaultTableModel modelRisksTbl = (DefaultTableModel)tableRisks.getModel();
-        //if single a row is selected then delete it. Multiple delete not allowed.
-        if(tableRisks.getSelectedRowCount() == 1){
-            int rowIndex = tableRisks.getSelectedRow();
-            int riskId = (int)modelRisksTbl.getValueAt(rowIndex, 0);
-            modelRisksTbl.removeRow(rowIndex);
-            dataAccess.DeleteRisk(riskId, projIdGlobal);
-            //update risks in the header
-            int qtyRisksOutstanding = 0;        
-            ArrayList<ModelRisk> risks = dataAccess.GetRisks(projIdGlobal);
-                for(int i = 0; i <= risks.size() -1; i++){
-                if(risks.get(i).riskStatus.equalsIgnoreCase("Un-Resolved")){
-                TextRiskStatus.setText("remaining");
-                qtyRisksOutstanding += 1;
+        JFrame frame = new JFrame("Warning");
+        JPanel panel = new JPanel();
+        LayoutManager layout = new FlowLayout();
+        panel.setLayout(layout);
+        final JLabel label = new JLabel();
+        int result = JOptionPane.showConfirmDialog(frame,"Are you sure you want to delete risk?", "Warning",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if(result == JOptionPane.YES_OPTION) {
+            DefaultTableModel modelRisksTbl = (DefaultTableModel) tableRisks.getModel();
+            //if single a row is selected then delete it. Multiple delete not allowed.
+            if (tableRisks.getSelectedRowCount() == 1) {
+                int rowIndex = tableRisks.getSelectedRow();
+                int riskId = (int) modelRisksTbl.getValueAt(rowIndex, 0);
+                modelRisksTbl.removeRow(rowIndex);
+                dataAccess.DeleteRisk(riskId, projIdGlobal);
+                //update risks in the header
+                int qtyRisksOutstanding = 0;
+                ArrayList<ModelRisk> risks = dataAccess.GetRisks(projIdGlobal);
+                for (int i = 0; i <= risks.size() - 1; i++) {
+                    if (risks.get(i).riskStatus.equalsIgnoreCase("Un-Resolved")) {
+                        TextRiskStatus.setText("remaining");
+                        qtyRisksOutstanding += 1;
+                    }
                 }
+                TextRiskStatus.setText(qtyRisksOutstanding + " Outstanding");
             }
-            TextRiskStatus.setText(qtyRisksOutstanding + " Outstanding");
         }
-        
+
     }//GEN-LAST:event_riskFuncBtnDeleteRiskActionPerformed
 
     private void riskFuncBtnEditRiskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_riskFuncBtnEditRiskActionPerformed

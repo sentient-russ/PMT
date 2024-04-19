@@ -1,7 +1,7 @@
-import java.awt.Color;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class ViewProjectRequirements extends javax.swing.JFrame {
@@ -473,17 +473,27 @@ public class ViewProjectRequirements extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_projectNonFuncBtnAddActionPerformed
 
-    private void projectNonFuncBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectNonFuncBtnDeleteActionPerformed
-        DefaultTableModel tblModel = (DefaultTableModel) tableNonFunctionalReqProject1.getModel();
-        //if single a row is selected then delete it. Multiple delete not allowed.
-        if(tableNonFunctionalReqProject1.getSelectedRowCount() == 1){
-            int rowIndex = tableNonFunctionalReqProject1.getSelectedRow();
-            int reqId = (int)tblModel.getValueAt(rowIndex, 0);
-            dataAccess.DeleteRequirement(reqId, projIdGlobal);
-            tblModel.removeRow(rowIndex);
-            dataAccess.DeleteRequirement(reqId,projIdGlobal);
-        }  
-    }//GEN-LAST:event_projectNonFuncBtnDeleteActionPerformed
+    private void projectFuncBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnDeleteActionPerformed
+        JFrame frame = new JFrame("Warning");
+        JPanel panel = new JPanel();
+        LayoutManager layout = new FlowLayout();
+        panel.setLayout(layout);
+        final JLabel label = new JLabel();
+        int result = JOptionPane.showConfirmDialog(frame, "Are you sure you wish to delete?", "Warning",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_OPTION) {
+            DefaultTableModel tblModel = (DefaultTableModel) tableFunctionalReqProject1.getModel();
+            //if single a row is selected then delete it. Multiple delete not allowed.
+            if (tableFunctionalReqProject1.getSelectedRowCount() == 1) {
+                int rowIndex = tableFunctionalReqProject1.getSelectedRow();
+                int reqId = (int) tblModel.getValueAt(rowIndex, 0);
+                dataAccess.DeleteRequirement(reqId, projIdGlobal);
+                tblModel.removeRow(rowIndex);
+                dataAccess.DeleteRequirement(reqId, projIdGlobal);
+            }
+        }//GEN-LAST:event_projectFuncBtnDeleteActionPerformed
+    }
 
     private void projectNonFuncBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectNonFuncBtnUpdateActionPerformed
         DefaultTableModel tblModel = (DefaultTableModel) tableNonFunctionalReqProject1.getModel();        
@@ -499,17 +509,27 @@ public class ViewProjectRequirements extends javax.swing.JFrame {
         }   
     }//GEN-LAST:event_projectNonFuncBtnUpdateActionPerformed
 
-    private void projectFuncBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnDeleteActionPerformed
-        DefaultTableModel tblModel = (DefaultTableModel) tableFunctionalReqProject1.getModel();
-        //if single a row is selected then delete it. Multiple delete not allowed.
-        if(tableFunctionalReqProject1.getSelectedRowCount() == 1){
-            int rowIndex = tableFunctionalReqProject1.getSelectedRow();
-            int reqId = (int)tblModel.getValueAt(rowIndex, 0);
-            dataAccess.DeleteRequirement(reqId, projIdGlobal);
-            tblModel.removeRow(rowIndex);
-            dataAccess.DeleteRequirement(reqId,projIdGlobal);
-        }    
-    }//GEN-LAST:event_projectFuncBtnDeleteActionPerformed
+    private void projectNonFuncBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectNonFuncBtnDeleteActionPerformed
+        JFrame frame = new JFrame("Warning");
+        JPanel panel = new JPanel();
+        LayoutManager layout = new FlowLayout();
+        panel.setLayout(layout);
+        final JLabel label = new JLabel();
+        int result = JOptionPane.showConfirmDialog(frame, "Are you sure you wish to delete?", "Warning",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_OPTION) {
+            DefaultTableModel tblModel = (DefaultTableModel) tableNonFunctionalReqProject1.getModel();
+            //if single a row is selected then delete it. Multiple delete not allowed.
+            if (tableNonFunctionalReqProject1.getSelectedRowCount() == 1) {
+                int rowIndex = tableNonFunctionalReqProject1.getSelectedRow();
+                int reqId = (int) tblModel.getValueAt(rowIndex, 0);
+                dataAccess.DeleteRequirement(reqId, projIdGlobal);
+                tblModel.removeRow(rowIndex);
+                dataAccess.DeleteRequirement(reqId, projIdGlobal);
+            }
+        }//GEN-LAST:event_projectNonFuncBtnDeleteActionPerformed
+    }
 
     private void projectFuncBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnUpdateActionPerformed
         DefaultTableModel tblModel = (DefaultTableModel) tableFunctionalReqProject1.getModel();

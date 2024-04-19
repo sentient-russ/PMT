@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class ViewHome extends javax.swing.JFrame {
+
     DbAccess dataAccess = new DbAccess();
     /**
      * Creates new form ViewHome
@@ -17,7 +18,7 @@ public class ViewHome extends javax.swing.JFrame {
         homeTbl1.scrollBarUpdateHomeTable(jScrollPane1);
         DefaultTableModel model = (DefaultTableModel)homeTbl1.getModel();
         ArrayList<ModelProject> resultsList = dataAccess.GetProjects();
-        
+
         for (int i = 0; i <= resultsList.size() -1; i++) {
             String hoursExpended = Double.toString(dataAccess.calcExpendedTotal(resultsList.get(i).projId));
             String hoursEstimated = Double.toString(dataAccess.calcProjEstimateTotal(resultsList.get(i).projId));
@@ -47,8 +48,8 @@ public class ViewHome extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Project Management Tool (P.M.T.)");
         setFocusCycleRoot(false);
-        setMinimumSize(new java.awt.Dimension(1000, 1000));
-        setPreferredSize(new java.awt.Dimension(1000, 1000));
+        setMinimumSize(new java.awt.Dimension(1000, 1000)); // originally 1000 x 1000
+        setPreferredSize(new java.awt.Dimension(1000, 1000)); //originally 1000 x 1000
 
         homeTbl1.setForeground(new java.awt.Color(51, 51, 51));
         homeTbl1.setModel(new javax.swing.table.DefaultTableModel(
@@ -199,15 +200,12 @@ public class ViewHome extends javax.swing.JFrame {
                     dataAccess.DeleteProject(projId);
                 }
             }else if (result == JOptionPane.NO_OPTION){
-                //do nothing
-            }else {
-                //do nothing
+                JOptionPane.showMessageDialog(frame, "Operation cancelled.", "Information", JOptionPane.INFORMATION_MESSAGE);
             }
-
     }//GEN-LAST:event_homeBtnDeleteActionPerformed
 
     private void homeBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnUpdateActionPerformed
-            
+
         DefaultTableModel tblModel = (DefaultTableModel) homeTbl1.getModel();
         //if single a row is selected then delete it. Multiple delete not allowed.
         if(homeTbl1.getSelectedRowCount() == 1){
@@ -231,7 +229,7 @@ public class ViewHome extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -254,7 +252,7 @@ public class ViewHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new ViewHome().setVisible(true);
-            
+
         });
     }
 

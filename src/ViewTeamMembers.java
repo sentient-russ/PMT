@@ -1,5 +1,6 @@
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -650,16 +651,25 @@ public class ViewTeamMembers extends javax.swing.JFrame {
     }//GEN-LAST:event_TextLastNameActionPerformed
 
     private void teamMembersFuncBtnDeleteMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamMembersFuncBtnDeleteMemberActionPerformed
-        DefaultTableModel modelTeamMembersTbl = (DefaultTableModel)tableTeamMembers.getModel();
-        //if single a row is selected then delete it. Multiple delete not allowed.
-        if(tableTeamMembers.getSelectedRowCount() == 1){
-            int rowIndex = tableTeamMembers.getSelectedRow();
-            int memberId = (int)modelTeamMembersTbl.getValueAt(rowIndex, 0);
-            modelTeamMembersTbl.removeRow(rowIndex);
-            dataAccess.DeleteTeamMember(memberId, projIdGlobal);
+        JFrame frame = new JFrame("Caution");
+        JPanel panel = new JPanel();
+        LayoutManager layout = new FlowLayout();
+        panel.setLayout(layout);
+        final JLabel label = new JLabel();
+        int result = JOptionPane.showConfirmDialog(frame,"Are you sure you want to delete stakeholder?", "Caution",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if(result == JOptionPane.YES_OPTION) {
+            DefaultTableModel modelTeamMembersTbl = (DefaultTableModel) tableTeamMembers.getModel();
+            //if single a row is selected then delete it. Multiple delete not allowed.
+            if (tableTeamMembers.getSelectedRowCount() == 1) {
+                int rowIndex = tableTeamMembers.getSelectedRow();
+                int memberId = (int) modelTeamMembersTbl.getValueAt(rowIndex, 0);
+                modelTeamMembersTbl.removeRow(rowIndex);
+                dataAccess.DeleteTeamMember(memberId, projIdGlobal);
+            }
         }
     }//GEN-LAST:event_teamMembersFuncBtnDeleteMemberActionPerformed
-
     private void teamMembersFuncBtnEditMemeberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamMembersFuncBtnEditMemeberActionPerformed
         DefaultTableModel modelTeamMembersTbl = (DefaultTableModel)tableTeamMembers.getModel();
         if(tableTeamMembers.getSelectedRowCount() == 1){
