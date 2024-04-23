@@ -22,13 +22,13 @@ public class DbAccess {
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
                     ModelProject foundProject = new ModelProject();
-                    foundProject.projId = resultSet.getInt("projId");
-                    foundProject.projOwner = resultSet.getString("projOwner");
-                    foundProject.projManager = resultSet.getString("projManager");
-                    foundProject.companyName = resultSet.getString("companyName");
-                    foundProject.projDescription = resultSet.getString("projDescription");
-                    foundProject.projEstimatedHours = resultSet.getString("projEstimatedHours");
-                    foundProject.projStatus = resultSet.getString("projStatus");
+                    foundProject.setProjId(resultSet.getInt("projId"));
+                    foundProject.setProjOwner(resultSet.getString("projOwner"));
+                    foundProject.setProjManager(resultSet.getString("projManager"));
+                    foundProject.setCompanyName(resultSet.getString("companyName"));
+                    foundProject.setProjDescription(resultSet.getString("projDescription"));
+                    foundProject.setProjEstimatedHours(resultSet.getString("projEstimatedHours"));
+                    foundProject.setProjStatus(resultSet.getString("projStatus"));
                     resultsList.add(foundProject);
                 }
                 connection.close();
@@ -46,14 +46,14 @@ public class DbAccess {
         ModelProject foundProject = new ModelProject();
         ArrayList<ModelProject> projects = GetProjects();
         for(int i = 0; i <= projects.size();i++){
-            if(projects.get(i).projId == projIdIn){
-                foundProject.projId = projects.get(i).projId;
-                foundProject.projOwner = projects.get(i).projOwner;
-                foundProject.projManager = projects.get(i).projManager;
-                foundProject.companyName = projects.get(i).companyName;
-                foundProject.projDescription = projects.get(i).projDescription;
-                foundProject.projEstimatedHours = projects.get(i).projEstimatedHours;
-                foundProject.projStatus = projects.get(i).projStatus;
+            if(projects.get(i).getProjId() == projIdIn){
+                foundProject.setProjId(projects.get(i).getProjId());
+                foundProject.setProjOwner(projects.get(i).getProjOwner());
+                foundProject.setProjManager(projects.get(i).getProjManager());
+                foundProject.setCompanyName(projects.get(i).getCompanyName());
+                foundProject.setProjDescription(projects.get(i).getProjDescription());
+                foundProject.setProjEstimatedHours(projects.get(i).getProjEstimatedHours());
+                foundProject.setProjStatus(projects.get(i).getProjStatus());
                 return foundProject;
             }
         }        
@@ -69,14 +69,14 @@ public class DbAccess {
         ModelProject foundProject = new ModelProject();
         ArrayList<ModelProject> projects = GetProjects();
         for(int i = 0; i <= projects.size();i++){
-            if(projects.get(i).companyName.equalsIgnoreCase(companyNameIn) && projects.get(i).projDescription.equalsIgnoreCase(projDescriptionIn)){
-                foundProject.projId = projects.get(i).projId;
-                foundProject.projOwner = projects.get(i).projOwner;
-                foundProject.projManager = projects.get(i).projManager;
-                foundProject.companyName = projects.get(i).companyName;
-                foundProject.projDescription = projects.get(i).projDescription;
-                foundProject.projEstimatedHours = projects.get(i).projEstimatedHours;
-                foundProject.projStatus = projects.get(i).projStatus;
+            if(projects.get(i).getCompanyName().equalsIgnoreCase(companyNameIn) && projects.get(i).getProjDescription().equalsIgnoreCase(projDescriptionIn)){
+                foundProject.setProjId(projects.get(i).getProjId());
+                foundProject.setProjOwner(projects.get(i).getProjOwner());
+                foundProject.setProjManager(projects.get(i).getProjManager());
+                foundProject.setCompanyName(projects.get(i).getCompanyName());
+                foundProject.setProjDescription(projects.get(i).getProjDescription());
+                foundProject.setProjEstimatedHours(projects.get(i).getProjEstimatedHours());
+                foundProject.setProjStatus(projects.get(i).getProjStatus());
                 return foundProject;
             }
         }        
@@ -88,11 +88,13 @@ public class DbAccess {
      * @return updatedProject a single project model
      */
     public ModelProject InsertProject(ModelProject newProjectIn){
-        String companyName = newProjectIn.companyName, projOwner = newProjectIn.projOwner, projManager = newProjectIn.projManager, projDescription = newProjectIn.projDescription, projEstimatedHours  = newProjectIn.projEstimatedHours, projStatus = newProjectIn.projStatus;
-        if(newProjectIn.companyName == null || newProjectIn.projOwner == null || newProjectIn.projManager == null || newProjectIn.projDescription == null || newProjectIn.projEstimatedHours == null || newProjectIn.projStatus == null){
+        String companyName = newProjectIn.getCompanyName(), projOwner = newProjectIn.getProjOwner();
+        String projManager = newProjectIn.getProjManager(), projDescription = newProjectIn.getProjDescription();
+        String projEstimatedHours  = newProjectIn.getProjEstimatedHours(), projStatus = newProjectIn.getProjStatus();
+        if(newProjectIn.getCompanyName() == null || newProjectIn.getProjOwner() == null || newProjectIn.getProjManager() == null || newProjectIn.getProjDescription() == null || newProjectIn.getProjEstimatedHours() == null || newProjectIn.getProjStatus() == null){
             ModelProject updatedProject = new ModelProject();
-            updatedProject.projId = 0;
-            updatedProject.projDescription = "Passing projects with null values is not permissible.  Passing empty strings or zeros are permissible.";
+            updatedProject.setProjId(0);
+            updatedProject.setProjDescription("Passing projects with null values is not permissible.  Passing empty strings or zeros are permissible.");
             return updatedProject;
         }
         try{
@@ -107,7 +109,7 @@ public class DbAccess {
         }catch (SQLException e){
             System.out.println(e);
         }
-        ModelProject updatedProject = GetProjectByCompanyDesc(newProjectIn.companyName,newProjectIn.projDescription);
+        ModelProject updatedProject = GetProjectByCompanyDesc(newProjectIn.getCompanyName(), newProjectIn.getProjDescription());
 
         return updatedProject;
     }
@@ -121,13 +123,13 @@ public class DbAccess {
             String query = ("UPDATE pmt.Projects SET companyName=?, projOwner=?, projManager=?,projDescription=?,projEstimatedHours=?,projStatus=? WHERE projId=?");
             try (Connection connection = DriverManager.getConnection("jdbc:mysql://162.205.232.101:3306/pmt", this.user, this.pass)) {
                 PreparedStatement stmt = connection.prepareStatement(query);
-                stmt.setInt(7, projectIn.projId);
-                stmt.setString(1, projectIn.companyName);
-                stmt.setString(2, projectIn.projOwner);
-                stmt.setString(3, projectIn.projManager);
-                stmt.setString(4, projectIn.projDescription);
-                stmt.setString(5, projectIn.projEstimatedHours);
-                stmt.setString(6, projectIn.projStatus);
+                stmt.setInt(7, projectIn.getProjId());
+                stmt.setString(1, projectIn.getCompanyName());
+                stmt.setString(2, projectIn.getProjOwner());
+                stmt.setString(3, projectIn.getProjManager());
+                stmt.setString(4, projectIn.getProjDescription());
+                stmt.setString(5, projectIn.getProjEstimatedHours());
+                stmt.setString(6, projectIn.getProjStatus());
                 stmt.executeUpdate();
                 connection.close();
             }
@@ -449,7 +451,7 @@ public class DbAccess {
         return count;
     }
     /**
-     * @param projIdIn the project id for the expended hours list that will be returned
+     //* @param projIdIn the project id for the expended hours list that will be returned
      * @return resultsList list of expended hours records for a specified project id
      */
     public ArrayList<ModelExpendedHours> GetExpendedHours(int reqIdIn){

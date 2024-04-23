@@ -1,5 +1,6 @@
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -694,13 +695,23 @@ public class ViewUpdateHoursEstimated extends javax.swing.JFrame {
     }//GEN-LAST:event_estFuncBtnResetActionPerformed
 
     private void estFuncBtnDeleteEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estFuncBtnDeleteEntryActionPerformed
-        DefaultTableModel modelExpHoursTbl = (DefaultTableModel)tableHoursEstimated.getModel();
-        //if single a row is selected then delete it. Multiple delete not allowed.
-        if(tableHoursEstimated.getSelectedRowCount() == 1){
-            int rowIndex = tableHoursEstimated.getSelectedRow();
-            int riskId = (int)modelExpHoursTbl.getValueAt(rowIndex, 0);
-            modelExpHoursTbl.removeRow(rowIndex);
-            dataAccess.DeleteRisk(riskId, projIdGlobal);
+        JFrame frame = new JFrame("Warning");
+        JPanel panel = new JPanel();
+        LayoutManager layout = new FlowLayout();
+        panel.setLayout(layout);
+        final JLabel label = new JLabel();
+        int result = JOptionPane.showConfirmDialog(frame, "Are you sure you wish to delete?", "Warning",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_OPTION) {
+            DefaultTableModel modelExpHoursTbl = (DefaultTableModel) tableHoursEstimated.getModel();
+            //if single a row is selected then delete it. Multiple delete not allowed.
+            if (tableHoursEstimated.getSelectedRowCount() == 1) {
+                int rowIndex = tableHoursEstimated.getSelectedRow();
+                int riskId = (int) modelExpHoursTbl.getValueAt(rowIndex, 0);
+                modelExpHoursTbl.removeRow(rowIndex);
+                dataAccess.DeleteRisk(riskId, projIdGlobal);
+            }
         }
     }//GEN-LAST:event_estFuncBtnDeleteEntryActionPerformed
 

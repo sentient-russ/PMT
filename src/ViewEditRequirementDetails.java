@@ -27,7 +27,7 @@ public class ViewEditRequirementDetails extends javax.swing.JFrame {
         //Begin Header
         TextTotalExpended.setText(Double.toString(dataAccess.calcExpendedTotal(projIdIn)));
         ModelProject currentProject = dataAccess.GetProject(projIdIn);        
-        TextProjectedHrs.setText(currentProject.projEstimatedHours);
+        TextProjectedHrs.setText(currentProject.getProjEstimatedHours());
         TextProjId.setText(Integer.toString(projIdIn));        
         int qtyRisksOutstanding = 0;        
         ArrayList<ModelRisk> risks = dataAccess.GetRisks(projIdIn);

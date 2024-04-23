@@ -9,19 +9,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67b43c2b-6c91-41ce-86fa-74afc13ddcac" name="Changes" comment="Changes made to workspace.xml file">
+    <list default="true" id="67b43c2b-6c91-41ce-86fa-74afc13ddcac" name="Changes" comment="Warnings/Confirmation windows created to improve UX.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewAddRequirement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewAddRequirement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewHome$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewHome$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewHome$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewHome$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewHome$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewHome$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewHome$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewHome$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewHome.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewHome.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewProjectDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewProjectDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewProjectRequirements.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewProjectRequirements.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewRisks$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewRisks$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewRisks$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewRisks$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewRisks$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewRisks$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewRisks$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewRisks$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewRisks$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewRisks$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewRisks$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewRisks$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewRisks$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewRisks$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewRisks$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewRisks$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewRisks$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewRisks$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewRisks.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewRisks.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PMT/ViewTeamMembers.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DbAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DbAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ModelProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ModelProject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewAddRequirement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewAddRequirement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewEditRequirementDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewEditRequirementDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ViewHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewHome.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ViewProjectDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewProjectDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewProjectRequirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewProjectRequirements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewRisks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewRisks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewTeamMembers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewTeamMembers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewProjectNew.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewProjectNew.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewUpdateHoursEstimated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewUpdateHoursEstimated.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewUpdateHoursExpended.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewUpdateHoursExpended.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,49 +65,49 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "IbrahimaDiallo32"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;IbrahimaDiallo32&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/sentient-russ/PMT.git",
-    "accountId": "b03e85ec-7fb2-4ca2-bf23-e6ab0f439a6d"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/sentient-russ/PMT.git&quot;,
+    &quot;accountId&quot;: &quot;b03e85ec-7fb2-4ca2-bf23-e6ab0f439a6d&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2eumYVc0EarsbWxN16imE0F2K4f" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ConfirmationDialog.executor": "Run",
-    "Application.ViewHome.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/russe/Desktop/PMT_ARCHIVE",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "configurable.group.build"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ConfirmationDialog.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ViewHome.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/russe/Desktop/PMT_ARCHIVE&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -96,6 +120,15 @@
       <workItem from="1713091242632" duration="3176000" />
       <workItem from="1713373962736" duration="2453000" />
     </task>
+    <task id="LOCAL-00001" summary="Warnings/Confirmation windows created to improve UX.">
+      <option name="closed" value="true" />
+      <created>1713488344916</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713488344917</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,18 +147,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changes made to workspace.xml file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes made to workspace.xml file" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file:///private/var/folders/2y/ngs4xds169g9qwvjyvk1z56c0000gn/T/tmp_8_PmtView.class</url>
-          <line>6</line>
-          <properties field="selectedCompanyName" class="PmtView" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Warnings/Confirmation windows created to improve UX." />
+    <option name="LAST_COMMIT_MESSAGE" value="Warnings/Confirmation windows created to improve UX." />
   </component>
 </project>

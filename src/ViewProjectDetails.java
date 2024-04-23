@@ -27,10 +27,10 @@ public class ViewProjectDetails extends javax.swing.JFrame {
         }
         TextRiskStatus.setText(qtyRisksOutstanding + " Outstanding");
         //End Header
-        TextCompanyName.setText(currentProject.companyName);
-        TextOwner.setText(currentProject.projOwner);
-        TextManager.setText(currentProject.projManager);
-        TextDescription.setText(currentProject.projDescription);
+        TextCompanyName.setText(currentProject.getCompanyName());
+        TextOwner.setText(currentProject.getProjOwner());
+        TextManager.setText(currentProject.getProjManager());
+        TextDescription.setText(currentProject.getProjDescription());
         
         String concatenatedTeamMembers = "";
         ArrayList<ModelTeamMember> team = dataAccess.GetTeamMembers(projId);
@@ -578,21 +578,21 @@ public class ViewProjectDetails extends javax.swing.JFrame {
         if (result == JOptionPane.YES_OPTION) {
             System.out.println("Reset Functional");
             ModelProject currentProj = dataAccess.GetProject(projIdGlobal);
-            TextCompanyName.setText(currentProj.companyName);
-            TextOwner.setText(currentProj.projOwner);
-            TextManager.setText(currentProj.projManager);
-            TextDescription.setText(currentProj.projDescription);
+            TextCompanyName.setText(currentProj.getCompanyName());
+            TextOwner.setText(currentProj.getProjOwner());
+            TextManager.setText(currentProj.getProjManager());
+            TextDescription.setText(currentProj.getProjDescription());
         }//GEN-LAST:event_projectFuncBtnResetActionPerformed
     }
     private void projectFuncBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnUpdateActionPerformed
         System.out.println("Update Functional");
         ModelProject currentProj = dataAccess.GetProject(projIdGlobal);
         //TextProjectedHrs
-        currentProj.companyName = TextCompanyName.getText();
-        currentProj.projOwner = TextOwner.getText();
-        currentProj.projManager = TextManager.getText();
-        currentProj.projDescription = TextDescription.getText();
-        currentProj.projEstimatedHours = TextProjectedHrs.getText();
+        currentProj.setCompanyName(TextCompanyName.getText());
+        currentProj.setProjOwner(TextOwner.getText());
+        currentProj.setProjManager(TextManager.getText());
+        currentProj.setProjDescription(TextDescription.getText());
+        currentProj.setProjEstimatedHours(TextProjectedHrs.getText());
         dataAccess.UpdateProject(currentProj);
     }//GEN-LAST:event_projectFuncBtnUpdateActionPerformed
 

@@ -1,8 +1,7 @@
-import java.awt.Color;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import javax.swing.JScrollBar;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -699,15 +698,25 @@ public class ViewUpdateHoursExpended extends javax.swing.JFrame {
     }//GEN-LAST:event_riskFuncBtnResetActionPerformed
 
     private void riskFuncBtnDeleteEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_riskFuncBtnDeleteEntryActionPerformed
-        DefaultTableModel modelExpHoursTbl = (DefaultTableModel)tableHoursExpended.getModel();
-        //if single a row is selected then delete it. Multiple delete not allowed.
-        if(tableHoursExpended.getSelectedRowCount() == 1){
-            int rowIndex = tableHoursExpended.getSelectedRow();
-            int riskId = (int)modelExpHoursTbl.getValueAt(rowIndex, 0);
-            modelExpHoursTbl.removeRow(rowIndex);
-            dataAccess.DeleteRisk(riskId, projIdGlobal);
-        }
-    }//GEN-LAST:event_riskFuncBtnDeleteEntryActionPerformed
+        JFrame frame = new JFrame("Warning");
+        JPanel panel = new JPanel();
+        LayoutManager layout = new FlowLayout();
+        panel.setLayout(layout);
+        final JLabel label = new JLabel();
+        int result = JOptionPane.showConfirmDialog(frame, "Are you sure you wish to delete?", "Warning",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_OPTION) {
+            DefaultTableModel modelExpHoursTbl = (DefaultTableModel) tableHoursExpended.getModel();
+            //if single a row is selected then delete it. Multiple delete not allowed.
+            if (tableHoursExpended.getSelectedRowCount() == 1) {
+                int rowIndex = tableHoursExpended.getSelectedRow();
+                int riskId = (int) modelExpHoursTbl.getValueAt(rowIndex, 0);
+                modelExpHoursTbl.removeRow(rowIndex);
+                dataAccess.DeleteRisk(riskId, projIdGlobal);
+            }
+        }//GEN-LAST:event_riskFuncBtnDeleteEntryActionPerformed
+    }
 
     private void riskFuncBtnEditEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_riskFuncBtnEditEntryActionPerformed
         DefaultTableModel modelExpHoursTbl = (DefaultTableModel)tableHoursExpended.getModel();

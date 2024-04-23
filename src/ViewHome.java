@@ -14,15 +14,16 @@ public class ViewHome extends javax.swing.JFrame {
      */
     public ViewHome() {
         initComponents();
+        this.setResizable(true);
         getContentPane().setBackground(new Color(54, 69, 79));
         homeTbl1.scrollBarUpdateHomeTable(jScrollPane1);
         DefaultTableModel model = (DefaultTableModel)homeTbl1.getModel();
         ArrayList<ModelProject> resultsList = dataAccess.GetProjects();
 
         for (int i = 0; i <= resultsList.size() -1; i++) {
-            String hoursExpended = Double.toString(dataAccess.calcExpendedTotal(resultsList.get(i).projId));
-            String hoursEstimated = Double.toString(dataAccess.calcProjEstimateTotal(resultsList.get(i).projId));
-            model.addRow(new Object[]{resultsList.get(i).projId, resultsList.get(i).companyName, resultsList.get(i).projDescription, resultsList.get(i).projStatus, hoursEstimated, hoursExpended});
+            String hoursExpended = Double.toString(dataAccess.calcExpendedTotal(resultsList.get(i).getProjId()));
+            String hoursEstimated = Double.toString(dataAccess.calcProjEstimateTotal(resultsList.get(i).getProjId()));
+            model.addRow(new Object[]{resultsList.get(i).getProjId(), resultsList.get(i).getCompanyName(), resultsList.get(i).getProjDescription(), resultsList.get(i).getProjStatus(), hoursEstimated, hoursExpended});
         }
     }
 

@@ -477,21 +477,21 @@ public class ViewProjectNew extends javax.swing.JFrame {
 
     private void projectFuncBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectFuncBtnUpdateActionPerformed
         ModelProject currentProj = new ModelProject();
-        currentProj.companyName = TextCompanyName.getText();
-        currentProj.projOwner = TextOwner.getText();
-        currentProj.projManager = TextManager.getText();
-        currentProj.projDescription = TextDescription.getText();
-        currentProj.projStatus = TextStatus.getText();
-        if(currentProj.companyName.equalsIgnoreCase("Enter company name...") || 
-           currentProj.projDescription.equalsIgnoreCase("Enter project vision, goals, and opportunities...") ||
-           currentProj.projManager.equalsIgnoreCase("Enter project managers name...") ||
-           currentProj.projOwner.equalsIgnoreCase("Enter owners name..."))
+        currentProj.setCompanyName(TextCompanyName.getText());
+        currentProj.setProjOwner(TextOwner.getText());
+        currentProj.setProjManager(TextManager.getText());
+        currentProj.setProjDescription(TextDescription.getText());
+        currentProj.setProjStatus(TextStatus.getText());
+        if(currentProj.getCompanyName().equalsIgnoreCase("Enter company name...") ||
+           currentProj.getProjDescription().equalsIgnoreCase("Enter project vision, goals, and opportunities...") ||
+           currentProj.getProjManager().equalsIgnoreCase("Enter project managers name...") ||
+           currentProj.getProjOwner().equalsIgnoreCase("Enter owners name..."))
         {             
             //do nothing
             //possibly return error to user
         } else {
             ModelProject returnedProject = dataAccess.InsertProject(currentProj);            
-            ViewProjectDetails vpd = new ViewProjectDetails(returnedProject.projId);
+            ViewProjectDetails vpd = new ViewProjectDetails(returnedProject.getProjId());
             vpd.setVisible(true);
             this.dispose();
         }        
