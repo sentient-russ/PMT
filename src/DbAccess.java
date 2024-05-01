@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class DbAccess {
     String user = "classremote";
-    String pass = "FiddleDeeStix1928";
+    String pass = "";
     public DbAccess(){}
     /*******************
      * Projects Section

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="PMT:jar" />
+      <artifact name="PMT:jar2" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -102,7 +102,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;
@@ -119,6 +119,10 @@
       <workItem from="1712762888794" duration="47000" />
       <workItem from="1713091242632" duration="3176000" />
       <workItem from="1713373962736" duration="2453000" />
+      <workItem from="1713846803932" duration="289000" />
+      <workItem from="1714356431522" duration="684000" />
+      <workItem from="1714429359186" duration="645000" />
+      <workItem from="1714599776745" duration="44000" />
     </task>
     <task id="LOCAL-00001" summary="Warnings/Confirmation windows created to improve UX.">
       <option name="closed" value="true" />
