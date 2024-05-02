@@ -40,7 +40,7 @@ Create/Edit/Delete Team Members</br>
 <img width="741" alt="Edit_Team" src="https://github.com/sentient-russ/PMT/assets/108576049/b07c4b8a-6577-4b1f-9bfc-c431109764db">
 </p>
 <p align="center">
-Create/Edit/Delete Requirements/br>
+Create/Edit/Delete Requirements</br>
 <img width="741" alt="View_Requirements" src="https://github.com/sentient-russ/PMT/assets/108576049/7e471347-7aa3-4fc0-b770-71cd891456c0">
 </p>
 <p align="center">
